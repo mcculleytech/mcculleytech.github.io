@@ -1,1 +1,0 @@
-# mcculleytech.github.io

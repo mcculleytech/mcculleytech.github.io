@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pjpt on </title>
+    <link>http://localhost:1313/tags/pjpt/</link>
+    <description>Recent content in Pjpt on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 21 Mar 2025 21:13:47 -0500</lastBuildDate><atom:link href="http://localhost:1313/tags/pjpt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pjpt</title>
+      <link>http://localhost:1313/posts/pjpt/</link>
+      <pubDate>Fri, 21 Mar 2025 21:13:47 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/pjpt/</guid>
+      <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;Last year I focused on acquiring my 1st Offensive security certification. I chose the PJPT( Practical
+Junior Penetration Tester) because I had taken some training from TCM a while back and thought it was good material, and the cost was easy to justify. I managed to get the certification the second attempt( more on that later), but overall found the experience to be a good one, and recommend it
+for beginners.&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;Last year I focused on acquiring my 1st Offensive security certification. I chose the PJPT( Practical
+Junior Penetration Tester) because I had taken some training from TCM a while back and thought it was good material, and the cost was easy to justify. I managed to get the certification the second attempt( more on that later), but overall found the experience to be a good one, and recommend it
+for beginners.&lt;/p&gt;
+&lt;h1 id=&#34;training&#34;&gt;training&lt;/h1&gt;
+&lt;p&gt;I found the PEH( Practical Ethical Haking) course to be good. I actually took an earlier version of the course through Udemy years ago, and found some things to be the same, but many parts were updatal, as they should have been. If you go on the TCM discord( which I did infrequently, but did from time to time), you&amp;rsquo;ll often hear that the PEA is all you&amp;rsquo;ll need to get the PJPT. That is an entirely accurate statement from my experience. My one gripe withe the training was the report writing section. I felt that it was lacking in the necessary information to actually write a report that would allow you to pass the PJPT in the 1st attempt. mention Mandiant CRT&lt;/p&gt;
+&lt;h1 id=&#34;exam-experience&#34;&gt;exam experience&lt;/h1&gt;
+&lt;p&gt;I took my exam on a Thursday to start so I&amp;rsquo;d be done w/ the exam by Monday. You&amp;rsquo;re given 2 days w/ machines, and two clays to write the report&amp;amp; submit for grading. I found the lab environment to be quite stable, and only really having to reset for a minor issue once, which was cleared up right way. I went into the exam with a methodology ready and used an obsidian vault to take my notes. I followed my methodology which led me to domain compromise within about 8 hours.
+I think I could have gotten there quicker, but I was treating this like a real engagement and trying to find all the possible vulnerabilities and exploit them. Honestly I had fun during my time in the actual environment.&lt;/p&gt;
+&lt;h1 id=&#34;report-writing&#34;&gt;report writing&lt;/h1&gt;
+&lt;p&gt;Here&amp;rsquo;s the pain point. Maybe it&amp;rsquo;s my inexperience in writing formal reports, maybe it&amp;rsquo;s TCM&amp;rsquo;s training, maybe its the report template TCM provides. whatever it was, it took me 2 days to do it. Admittedly I made a silly mistake in my submission, but when I asked for clarification for my 2nd submission I did not get any clarity on what exactly I should include. So, I took my time and threw in everything that I had. So. Many. Screenshots. About halfway through, I thought to myself there&amp;rsquo;s got to be a way to automate this process. If-had to do this frequently I&amp;rsquo;d probably try to template it out in Obsidian, or work on some other &amp;lsquo;markdown automation.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

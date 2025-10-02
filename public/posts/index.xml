@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on </title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 21 Mar 2025 21:21:54 -0500</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>asm101</title>
+      <link>http://localhost:1313/posts/asm101/</link>
+      <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/asm101/</guid>
+      <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;I recently self-evaluated my skills in the offensive security space and while it was a little uncomfortable to confront my own deficiencies, it was a good first step in remediating those gaps in my knowledge. While I won&amp;rsquo;t reveal all the results here, I will say that I noticed there was a lack of low level programming knowledge. Because I&amp;rsquo;ve been self-taught for the vast majority of my career I never had to slog through any courses involving lower level languages. All the programming I&amp;rsquo;ve done has really been scripting in Python and PowerShell because that&amp;rsquo;s what my jobs necessitated and there were many other things to learn in the offensive security space. This gap seemed like a good place to start in my journey to improve my skillset. There&amp;rsquo;s tons of resources out there for low level programming and I was happy to find that TCM recently launched an &lt;a href=&#34;https://academy.tcm-sec.com/p/assembly-101&#34;&gt;Assembly 101&lt;/a&gt; course in their academy. Having Just taken the PJPT from TCM, about which you can read my experience &lt;a href=&#34;http://localhost:1313/posts/pjpt/&#34;&gt;here&lt;/a&gt;, I figured why not spend the $30 for a month and see how it goes.&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;I recently self-evaluated my skills in the offensive security space and while it was a little uncomfortable to confront my own deficiencies, it was a good first step in remediating those gaps in my knowledge. While I won&amp;rsquo;t reveal all the results here, I will say that I noticed there was a lack of low level programming knowledge. Because I&amp;rsquo;ve been self-taught for the vast majority of my career I never had to slog through any courses involving lower level languages. All the programming I&amp;rsquo;ve done has really been scripting in Python and PowerShell because that&amp;rsquo;s what my jobs necessitated and there were many other things to learn in the offensive security space. This gap seemed like a good place to start in my journey to improve my skillset. There&amp;rsquo;s tons of resources out there for low level programming and I was happy to find that TCM recently launched an &lt;a href=&#34;https://academy.tcm-sec.com/p/assembly-101&#34;&gt;Assembly 101&lt;/a&gt; course in their academy. Having Just taken the PJPT from TCM, about which you can read my experience &lt;a href=&#34;http://localhost:1313/posts/pjpt/&#34;&gt;here&lt;/a&gt;, I figured why not spend the $30 for a month and see how it goes.&lt;/p&gt;
+&lt;h2 id=&#34;the-basics&#34;&gt;the basics&lt;/h2&gt;
+&lt;p&gt;The basic knowledge I had been at least exposed to if not studied outright. Things like hex values, binary, translating values, etc. was nothing new to me, but I appreciated the refresher. The lessons on how a processor actually works was something I had heard about before as well but never really sat down and really digested. I thought those videos were well done and ended up getting a good basic idea of how a simple CPU uses logic gates and perform operations based on circuits built from the logic gates. Everyone knows that computers only use 1s and 0s, but seeing that explanation at an in-depth level was very interesting.&lt;/p&gt;
+&lt;p&gt;Learning about the Control Unit, the Arithmetic Logic Unit (ALU), and of course the registers and how they all worked in conjunction with the ROM (not sure if that&amp;rsquo;s true for modern CPUS, but this was in the example given for the intro section) really helped to create a more holistic view of the processor. Keeping that in mind as I worked my way through the course, it was cool to visualize how everything flowed from the assembly instructions.&lt;/p&gt;
+&lt;h2 id=&#34;running-with-the-8086-emulator---16-bit-processor&#34;&gt;running with the 8086 emulator - 16 bit processor&lt;/h2&gt;
+&lt;p&gt;Using the &lt;a href=&#34;https://yjdoc2.github.io/8086-emulator-web/&#34;&gt;8086 emulator&lt;/a&gt; allowed for a simpler way of getting hands on keyboard compared to x64 assembly. The emulator also gave a more detailed view of registry and memory values which was &lt;em&gt;extremely&lt;/em&gt; helpful as a beginner. Overall I think having this section was one of the best parts of the course. I felt that each video was a good length allowing for me to easily get through one or two whenever I had the chance.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;note&lt;/strong&gt;: The course used a self hosted docker container for the emulator. I linked to the web version.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/asm101/8086_emulator.png&#34; alt=&#34;8086 Web Emulator&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;code-challenges-16-bit&#34;&gt;code challenges 16-bit&lt;/h3&gt;
+&lt;p&gt;The code challenges were great. Some of them I was able to get in a short amount of time while others needed multiple hours and breaks. There was one that I was unable to complete on my own, the &lt;code&gt;lods&lt;/code&gt; and &lt;code&gt;stods&lt;/code&gt; number addition challenge, but I never felt completely lost on any of them.&lt;/p&gt;
+&lt;p&gt;At one point I wrote a program that met all the requirements of the challenge but looking at the instructor&amp;rsquo;s code I noticed that he kept everything in the registers while I moved things into RAM. It was an interesting learning moment where I asked myself what&amp;rsquo;s the benefit of keeping all the data in registers. After thinking for a little while I had a neat realization: keeping everything in registers radically improves the speed of the instructions compared to the overhead of moving it into RAM. The registers have the advantage of being located inside the CPU while grabbing data from RAM requires additional operations. Something you don&amp;rsquo;t really think about using high-level languages that I&amp;rsquo;m used to. Below is a simple example of 8086 code.&lt;/p&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34;  /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;nasm&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;16 bit assembly snippet&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-nasm&#34; &gt;&lt;code&gt;
+;Program to store string &amp;#34;Don&amp;#39;t Print This. Print This.&amp;#34; starting at 0x20000
+; and then print out only the &amp;#34;Print This.&amp;#34; Portion of the string.
+set 0x2000 ;setting start of data directive
+string: db &amp;#34;Don&amp;#39;t Print This. Print This.&amp;#34; ; Store the string
+start:
+mov AH, 0x13 ; Setting up AH for int 0x10 subfunction 0x13
+mov CX, 0x0b ; Setting up CX for number of chars in string - 11chars
+mov BX, 0x2000 ; Set memory address for mov into ES
+mov ES, BX ; set ES for string print
+mov BP, 0x12; set base pointer to string offset - effectively eliminating the first part of the string
+int 0x10 ; call to printchars
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;moving-to-x64&#34;&gt;moving to x64&lt;/h2&gt;
+&lt;p&gt;There was definitely a jump in difficulty here, and in the beginning going from the emulator to just raw assembly and all the new syntax, tools, and commands was a little overwhelming but I don&amp;rsquo;t know how I would change anything to be honest. Maybe discussing 32 bit for a small section would help, but it could also just add unnecessary material. I did re-watch many of the videos for this section, and sought out a couple of additional videos on beginning with x64 assembly. I&amp;rsquo;m glad I did that because at least one of the videos I watched used &lt;code&gt;nasm&lt;/code&gt;, and like Andrew says in his TCM videos, the syntax is slightly different and a little closer to the 8086 emulator syntax. One thing I had going for me was plenty of Linux experience so I wasn&amp;rsquo;t afraid of the CLI and I really liked the &lt;code&gt;gdb&lt;/code&gt; tui interface. That&amp;rsquo;s something that I&amp;rsquo;ll be keeping in my back pocket for future debugging or playing around in assembly.&lt;/p&gt;
+&lt;p&gt;For me, I think part of the increased difficulty has to do with the &lt;strong&gt;System V Application Binary Interface (ABI)&lt;/strong&gt; and the increased responsibility to manage the size and content of the registers. Having arguments in registers instead of pushing to the stack adds complexity. The concept of &lt;strong&gt;callee-saved registers&lt;/strong&gt; took a bit to wrap my head around and made me think more about what values were going to remain after calling a function and which ones I needed to preserve manually. Having all the additional space in registers also makes it a little tougher to view the contents of the lower registers, at least within &lt;code&gt;gdb&lt;/code&gt; vs. the emulator. These challenges will likely work themselves out with more practice and just wrestling with the material, but they were and are things that I personally struggle with.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/asm101/gdb.png&#34; alt=&#34;gdb tui&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;code-challenges-x64&#34;&gt;code challenges x64&lt;/h3&gt;
+&lt;p&gt;These were a struggle. It was the first time in the course where I felt pretty lost. As mentioned above I rewatched the section videos and it took a &lt;em&gt;long&lt;/em&gt; time to put the pieces together. I finally got the skeletal structure of the first challenge but couldn&amp;rsquo;t quite put the pieces together. What I found challenging about it was the memory alignment and staying compliant with ABI. Eventually I spent so much time that I had to look at Andrew&amp;rsquo;s code. Luckily about 90% of it made total sense. It was the fine details of restoring register values after the function call and some of the base pointer alignment stuff that still left me a little lost.&lt;/p&gt;
+&lt;p&gt;I did get significantly farther with the TCM coding challenge. Admittedly I did use AI to help my understanding of what I was doing and validate my understanding. It didn&amp;rsquo;t write any of the code, just checked my own work. I find that&amp;rsquo;s the best use for AI in these types of situations. I got hung up on the bonus longer than I should have and eventually I spent too much time and needed to move forward due to time constraints. As for the last challenge, I&amp;rsquo;ll leave that to the next section.&lt;/p&gt;
+&lt;h2 id=&#34;final-section---memory-safety&#34;&gt;final section - memory safety&lt;/h2&gt;
+&lt;p&gt;This was actually the most fun I had in the entire course. It was also the most difficult, but applying everything I learned over the entire course to start performing exploits was really satisfying. At the beginning of my journey into computer science and IT work, I looked at some low level programming and exploitation material but it flew way over my head at the time. The way the material was presented in this course was great and actually seemed to wake up some of the concepts I had seen a long time ago. I walked away from the course with a &lt;em&gt;much&lt;/em&gt; better understanding of things like nopsleds, avoiding bad characters in shellcode, and stack smashing attacks in general.&lt;/p&gt;
+&lt;p&gt;The final challenge was really a challenge related to writing shellcode. My struggles continued and after spending a fair amount of time on it (4 hours over the course of a few days), I decided to grab the shellcode and run from there. Interestingly enough, I couldn&amp;rsquo;t get it work on my host machine running NixOS (I could get a shell but not run commands, I think it had something to do with the path and nix store?), but I did get it to run in an Ubuntu virtual machine. Overall listening to the explanation of the shellcode was really useful and I see the train of though as far as deciding on the syscall needed and getting that setup.&lt;/p&gt;
+&lt;h2 id=&#34;overall-impressions&#34;&gt;overall impressions&lt;/h2&gt;
+&lt;p&gt;My goal in taking this course was to start to gain a better understanding of programming at a low-level and more specifically how to take advantage of that as an offensive security professional. I would say that this course far exceeded my expectation in doing that and gave me a solid foundation to build on moving forward. I thought the best section was the memory safety section and the &amp;lsquo;weakest&amp;rsquo; one was the x86-64 functions section, but really the material was all good. At this point for me it&amp;rsquo;s about continuing to practice with assembly and low-level programming. At the end of the course Andrew mentioned if anybody would like to see another course from him. It&amp;rsquo;d be great to see him teach a course on C. I would take that course in a heartbeat.&lt;/p&gt;
+&lt;h2 id=&#34;whats-next&#34;&gt;what&amp;rsquo;s next?&lt;/h2&gt;
+&lt;p&gt;Thinking about assembly really has me curious about different CPU architectures and how efficient each one is at handling instructions. It&amp;rsquo;s my understanding that ARM and RISC-V have a better or more efficient instruction set and that&amp;rsquo;s part of what leads to the increased battery life on machines with that architecture. I&amp;rsquo;d like to dig a little into either or both of those assembly languages at some point to see how it differs.&lt;/p&gt;
+&lt;p&gt;At the very beginning of my IT studies I did come across a book that went into low-level programming, &lt;a href=&#34;https://www.amazon.com/Hacking-Art-Exploitation-Jon-Erickson/dp/1593271441&#34;&gt;Hacking: The Art of Exploitation&lt;/a&gt; by Jon Erickson, and while I did manage to read the book I didn&amp;rsquo;t grasp most of the concepts. I took the book as a challenge to conquer and not material to really understand. The truth is that I just didn&amp;rsquo;t have the knowledge that I do now. I would like to try and read this book again with the assembly knowledge that I have now and see how much more it makes sense to me now.&lt;/p&gt;
+&lt;p&gt;Another option I&amp;rsquo;ve been seriously looking at is &lt;a href=&#34;https://learncodethehardway.org/c/&#34;&gt;Learn C the Hard Way&lt;/a&gt;. I completed Learn Python the Hard Way years ago and found it to be helpful. One of the reasons this course sticks out to me is the focus put on defensive programming and the mention of getting to exploit C code during the course. s&lt;/p&gt;
+&lt;h3 id=&#34;additional-resources&#34;&gt;additional resources&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/6S5KRJv-7RU?si=vhRtkYRD41yiBFRG&#34;&gt;Low Level YouTube Video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/VQAKkuLL31g?si=hXH3DnUysen19RFc&#34;&gt;kupala Assembly Tutorials&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>pjpt</title>
+      <link>http://localhost:1313/posts/pjpt/</link>
+      <pubDate>Fri, 21 Mar 2025 21:13:47 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/pjpt/</guid>
+      <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;Last year I focused on acquiring my 1st Offensive security certification. I chose the PJPT( Practical
+Junior Penetration Tester) because I had taken some training from TCM a while back and thought it was good material, and the cost was easy to justify. I managed to get the certification the second attempt( more on that later), but overall found the experience to be a good one, and recommend it
+for beginners.&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;Last year I focused on acquiring my 1st Offensive security certification. I chose the PJPT( Practical
+Junior Penetration Tester) because I had taken some training from TCM a while back and thought it was good material, and the cost was easy to justify. I managed to get the certification the second attempt( more on that later), but overall found the experience to be a good one, and recommend it
+for beginners.&lt;/p&gt;
+&lt;h1 id=&#34;training&#34;&gt;training&lt;/h1&gt;
+&lt;p&gt;I found the PEH( Practical Ethical Haking) course to be good. I actually took an earlier version of the course through Udemy years ago, and found some things to be the same, but many parts were updatal, as they should have been. If you go on the TCM discord( which I did infrequently, but did from time to time), you&amp;rsquo;ll often hear that the PEA is all you&amp;rsquo;ll need to get the PJPT. That is an entirely accurate statement from my experience. My one gripe withe the training was the report writing section. I felt that it was lacking in the necessary information to actually write a report that would allow you to pass the PJPT in the 1st attempt. mention Mandiant CRT&lt;/p&gt;
+&lt;h1 id=&#34;exam-experience&#34;&gt;exam experience&lt;/h1&gt;
+&lt;p&gt;I took my exam on a Thursday to start so I&amp;rsquo;d be done w/ the exam by Monday. You&amp;rsquo;re given 2 days w/ machines, and two clays to write the report&amp;amp; submit for grading. I found the lab environment to be quite stable, and only really having to reset for a minor issue once, which was cleared up right way. I went into the exam with a methodology ready and used an obsidian vault to take my notes. I followed my methodology which led me to domain compromise within about 8 hours.
+I think I could have gotten there quicker, but I was treating this like a real engagement and trying to find all the possible vulnerabilities and exploit them. Honestly I had fun during my time in the actual environment.&lt;/p&gt;
+&lt;h1 id=&#34;report-writing&#34;&gt;report writing&lt;/h1&gt;
+&lt;p&gt;Here&amp;rsquo;s the pain point. Maybe it&amp;rsquo;s my inexperience in writing formal reports, maybe it&amp;rsquo;s TCM&amp;rsquo;s training, maybe its the report template TCM provides. whatever it was, it took me 2 days to do it. Admittedly I made a silly mistake in my submission, but when I asked for clarification for my 2nd submission I did not get any clarity on what exactly I should include. So, I took my time and threw in everything that I had. So. Many. Screenshots. About halfway through, I thought to myself there&amp;rsquo;s got to be a way to automate this process. If-had to do this frequently I&amp;rsquo;d probably try to template it out in Obsidian, or work on some other &amp;lsquo;markdown automation.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

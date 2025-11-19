@@ -5,7 +5,7 @@ title = 'About'
 +++
 
 ## overview
-I've been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I've been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position.
+I've been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I've been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!
 
 ## experience
 - Network Penetration Testing
@@ -25,6 +25,7 @@ I've been studying various technologies since 2018 primarily through my HomeLab 
 	- Mesh VPN Configured with Tailscale.
 	- GitHub Action for automating package updates to repository.
 - Learning Terraform and AWS, DigitalOcean deployments.
+- Malware Development through [Maldev Academy](https://maldevacademy.com/)
 - Self Hosted LLM through ollama and OpenWebUI.
 - Version Controlled Hugo Website via GitHub (The site you're on now!).
 	- GitHub Action for AutoDeployment.
@@ -47,12 +48,17 @@ I've been studying various technologies since 2018 primarily through my HomeLab 
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="88dab31a-431a-4e86-ac2e-c1aae23c5f4e" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
-<img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/127337054">
+<div style="display:flex; gap:1rem; align-items:center;">
+  <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/127337054" width="150">
+  <img src="https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937" width="150">
+</div>
 
 ## trainings
 - Mandiant Creative Red Team
+- Mandiant Azure Penetration Testing Basics (Custom training)
 - Mandiant Essentials of Malware Analysis
 - TCM Practical Ethical Hacker
 - TCM C# For Hackers
 - TCM Assembly 101
 - TCM Python 201 For Hackers
+- HackTheBox Active Directory Penetration Tester Path

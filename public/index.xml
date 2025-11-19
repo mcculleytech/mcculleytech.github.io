@@ -8,30 +8,6 @@
     <language>en</language>
     <lastBuildDate>Fri, 11 Apr 2025 15:41:07 -0500</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>malware analysis</title>
-      <link>http://localhost:1313/posts/malware_analysis/</link>
-      <pubDate>Fri, 11 Apr 2025 15:41:07 -0500</pubDate>
-      
-      <guid>http://localhost:1313/posts/malware_analysis/</guid>
-      <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
-&lt;p&gt;In my recent post about &lt;a href=&#34;http://localhost:1313/posts/asm101/&#34;&gt;assembly&lt;/a&gt;, I mentioned a desire to continue to grow in my understanding of low level programming. As a part of that I took a course on basic malware analysis from Mandiant that me both analyze malware samples both statically and dynamically. During that course I used &lt;a href=&#34;https://hex-rays.com/ida-pro&#34;&gt;IDA Pro&lt;/a&gt; to decompile some malware and get a look &amp;lsquo;under the hood&amp;rsquo; so to speak at what a particular piece of malware was doing. The preexisting assembly knowledge was great to have for that section of the course. I also took the &lt;a href=&#34;https://academy.tcm-sec.com/p/python-201-for-hackers&#34;&gt;Python 201&lt;/a&gt; from TCM where the &lt;a href=&#34;https://docs.python.org/3/library/ctypes.html&#34;&gt;ctypes&lt;/a&gt; was used to interact with the Win32 API to see if I could use my existing python knowledge to interact with Windows at a low level. I decided it&amp;rsquo;d be a good exercise to meld these two trainings together into a personal project/ exercise and write a piece of malware in Python (I use the term malware loosely), and then analyze it using some of the tools and techniques that I learned in the Mandiant training. Thus this post was born.&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
-&lt;p&gt;In my recent post about &lt;a href=&#34;http://localhost:1313/posts/asm101/&#34;&gt;assembly&lt;/a&gt;, I mentioned a desire to continue to grow in my understanding of low level programming. As a part of that I took a course on basic malware analysis from Mandiant that me both analyze malware samples both statically and dynamically. During that course I used &lt;a href=&#34;https://hex-rays.com/ida-pro&#34;&gt;IDA Pro&lt;/a&gt; to decompile some malware and get a look &amp;lsquo;under the hood&amp;rsquo; so to speak at what a particular piece of malware was doing. The preexisting assembly knowledge was great to have for that section of the course. I also took the &lt;a href=&#34;https://academy.tcm-sec.com/p/python-201-for-hackers&#34;&gt;Python 201&lt;/a&gt; from TCM where the &lt;a href=&#34;https://docs.python.org/3/library/ctypes.html&#34;&gt;ctypes&lt;/a&gt; was used to interact with the Win32 API to see if I could use my existing python knowledge to interact with Windows at a low level. I decided it&amp;rsquo;d be a good exercise to meld these two trainings together into a personal project/ exercise and write a piece of malware in Python (I use the term malware loosely), and then analyze it using some of the tools and techniques that I learned in the Mandiant training. Thus this post was born.&lt;/p&gt;
-&lt;p&gt;As a brief side note - my subnet changed a few times in my local VMWare network so if you notice different IPs that&amp;rsquo;s the reason why. There&amp;rsquo;s a small chance that I mix up screenshots between the different subnets by accident.&lt;/p&gt;
-&lt;h2 id=&#34;methodology&#34;&gt;methodology&lt;/h2&gt;
-&lt;p&gt;For the purposes of this project I wanted something simple since I&amp;rsquo;m a little out of my element in malware development (it&amp;rsquo;s a work in progress). I decided to write a piece of malware that opens up notepad, allocates memory within that process, writes some shellcode, then executes it. As I stated in the overview, this will be done in python and utilizing the &lt;code&gt;ctypes&lt;/code&gt; library. The execution will be done on a &lt;a href=&#34;https://github.com/mandiant/commando-vm&#34;&gt;commando vm&lt;/a&gt; which comes with some analysis tools.&lt;/p&gt;
-&lt;h3 id=&#34;writing-the-malware&#34;&gt;writing the &amp;lsquo;malware&amp;rsquo;&lt;/h3&gt;
-&lt;p&gt;The malware writing process involved me taking a deeper dive and reviewing one of the projects outlined in the Python 201 course by TCM where the malware written follows the same flow that I wanted to analyze. To be honest the only real difference is in the shellcode. The msfvenom payload was crafted to make a callback to my attacker machine.&lt;/p&gt;
-&lt;p&gt;[Insert Screenshots and source code link here]&lt;/p&gt;
-&lt;p&gt;As a final step in this exercise - I want to format the malware into an exe to run against my commando vm. Obviously having Python on a Windows machine is non standard so I&amp;rsquo;d like for it to be more portable and mimic a more &amp;lsquo;realistic&amp;rsquo; piece of malware in format.&lt;/p&gt;
-&lt;h3 id=&#34;static-analysis&#34;&gt;static analysis&lt;/h3&gt;
-&lt;h3 id=&#34;dynamic-analysis&#34;&gt;dynamic analysis&lt;/h3&gt;
-&lt;p&gt;It&amp;rsquo;s important before running the malware in our sandbox environment to take a snapshot of the VM we&amp;rsquo;re running it on. That way any artifacts left behind are wiped away once we restore the VM to it&amp;rsquo;s old snapshot. Once that&amp;rsquo;s done, we need to setup a few tools to capture the behavior of the malware. &lt;a href=&#34;&#34;&gt;FakeNet&lt;/a&gt; is a tool built by Mandiant that will allow us to fake network activity.&lt;/p&gt;
-&lt;h2 id=&#34;closing-remarks&#34;&gt;closing remarks&lt;/h2&gt;
-</content>
-    </item>
-    
-    <item>
       <title>asm101</title>
       <link>http://localhost:1313/posts/asm101/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
@@ -168,9 +144,11 @@ int 0x10 ; call to printchars
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88be3e32-dc52-4c65-9820-e24977bd85a5&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88dab31a-431a-4e86-ac2e-c1aae23c5f4e&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
 &lt;img src=&#34;https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/127337054&#34;&gt;
+&lt;img src=&#34;https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937&#34;&gt;
 &lt;h2 id=&#34;trainings&#34;&gt;trainings&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Mandiant Creative Red Team&lt;/li&gt;
+&lt;li&gt;Mandiant Azure Penetration Testing Basics (Custom training)&lt;/li&gt;
 &lt;li&gt;Mandiant Essentials of Malware Analysis&lt;/li&gt;
 &lt;li&gt;TCM Practical Ethical Hacker&lt;/li&gt;
 &lt;li&gt;TCM C# For Hackers&lt;/li&gt;
@@ -219,9 +197,11 @@ int 0x10 ; call to printchars
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88be3e32-dc52-4c65-9820-e24977bd85a5&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88dab31a-431a-4e86-ac2e-c1aae23c5f4e&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
 &lt;img src=&#34;https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/127337054&#34;&gt;
+&lt;img src=&#34;https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937&#34;&gt;
 &lt;h2 id=&#34;trainings&#34;&gt;trainings&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Mandiant Creative Red Team&lt;/li&gt;
+&lt;li&gt;Mandiant Azure Penetration Testing Basics (Custom training)&lt;/li&gt;
 &lt;li&gt;Mandiant Essentials of Malware Analysis&lt;/li&gt;
 &lt;li&gt;TCM Practical Ethical Hacker&lt;/li&gt;
 &lt;li&gt;TCM C# For Hackers&lt;/li&gt;

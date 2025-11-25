@@ -6,7 +6,26 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Apr 2025 15:41:07 -0500</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Nov 2025 13:24:08 -0600</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The SoDak Hackerspace</title>
+      <link>http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/</link>
+      <pubDate>Wed, 19 Nov 2025 13:24:08 -0600</pubDate>
+      
+      <guid>http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/</guid>
+      <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;My HomeLab has been the biggest boon to my career in IT. It provided me a space to deploy, manage, and experiment with different technologies and also reduce my reliance on big tech companies by self hosting my own services. It&amp;rsquo;s been a lot of fun to build, deploy, break, upgrade, and learn in my own little kingdom so to speak. A while back I was listening to a podcast, I believe it was &lt;a href=&#34;https://linuxunplugged.com/&#34;&gt;Linux Unplugged&lt;/a&gt; and one of the hosts mentioned that they visited a hackerspace in Berlin. The name alone was enticing but to hear them describe this enclave of technology enthusiasts that meets up and works on projects, learn from each other and have a space to nerd out over things sounded incredible and made me wonder if I could pull something like that off in my own community.&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;My HomeLab has been the biggest boon to my career in IT. It provided me a space to deploy, manage, and experiment with different technologies and also reduce my reliance on big tech companies by self hosting my own services. It&amp;rsquo;s been a lot of fun to build, deploy, break, upgrade, and learn in my own little kingdom so to speak. A while back I was listening to a podcast, I believe it was &lt;a href=&#34;https://linuxunplugged.com/&#34;&gt;Linux Unplugged&lt;/a&gt; and one of the hosts mentioned that they visited a hackerspace in Berlin. The name alone was enticing but to hear them describe this enclave of technology enthusiasts that meets up and works on projects, learn from each other and have a space to nerd out over things sounded incredible and made me wonder if I could pull something like that off in my own community.&lt;/p&gt;
+&lt;h1 id=&#34;goals&#34;&gt;goals&lt;/h1&gt;
+&lt;p&gt;There&amp;rsquo;s few ideas that I had going into this endeavour. The first was to provide a space to learn, tinker, and collaborate on projects surrounding the computer space. That&amp;rsquo;s simple enough, people could bring their own workstations and work on their own infra with help from others as needed. But it&amp;rsquo;d be fun to have some shared infrastructure - a community HomeLab if you will. As I thought about the idea of shared infrastructure there would be levels of logistical organization that would need to be in place, especially if we had a server or two or three that people could hop on. While shared user accounts and just handing out root credentials is easy it&amp;rsquo;s also terrifying and stupid. The only thing is that managing an organization is difficult, complex, and expensive and while the first two will always be the case, I could work hard to make the cost low. Like really low. Then the idea struck:&lt;/p&gt;
+&lt;center&gt;&lt;strong&gt;An entire organization built on top of open source for management and infrastructure.&lt;/strong&gt;&lt;/center&gt;
+&lt;p&gt;Built on top of Proxmox, the idea for now as a PoC is to have an all in one management box that you only need to plug into a WAN port on a modem. The entire rest of the infrastructure will be virtualized. Opnsense or Pfsense for the router, headscale for the VPN, FreeIPA for Identity Management, self hosted SSO, Wazuh for SIEM and XDR, managed by ansible, almost everything an organization needs to get off the ground and all while minimizing the reliance on big tech companies. Eventually if it takes off, a template box could be created and shipped to members and everyone could host a node independently and integrate with services as needed (so long as the network connection via headscale is enough).&lt;/p&gt;
+&lt;p&gt;Of course, as often happens, life has been crazy and my free time went from minimal to zero for quite some time. The idea was always still there though and eventually the opportunity presented itself to launch the &lt;a href=&#34;https://sodakhacker.space/&#34;&gt;SoDak Hackerspace&lt;/a&gt;. The domain was bought, the initial hardware was gathered together, Proxmox installed, and then &amp;hellip; that opportunity fell through. But the dream persisted and progress has happened recently. I write all this to say that I hope one day the SoDak Hackerspace will really start to come together and I get people within my local community involved in it and meetups start happening with projects to work on. If you visit the hackerspace site today, there&amp;rsquo;s not much. Just my profile and I think an initial blog post about the laptop I had started to make into the primary Proxmox node. I did hit a stroke of luck and acquired much better hardware to start with than the laptop so in that sense, we&amp;rsquo;re doing pretty well. I&amp;rsquo;m hoping to post on the hackerspace blog more often as it gets off the ground starting with a little more detailed writeup of the initial setup.&lt;/p&gt;
+&lt;p&gt;Currently Proxmox has been installed, headscale has been configured and working, and there&amp;rsquo;s a pfsense box that has been configured for the internal infrastructure as well a DMZ if deemed necessary. We also have a public xonotic server that can be a bit latent to be honest. My next step is to configure some server templates, get Ansible stood up, and install FreeIPA on a box or two as a way to have identity management. I figured the earlier that gets setup the better so accounts can be created and managed in there. If anybody sees this and has an interest in it feel free to email me at &lt;a href=&#34;mailto:alex@sodakhacker.space&#34;&gt;alex@sodakhacker.space&lt;/a&gt; or take a look at the website &lt;a href=&#34;https://sodakhacker.space&#34;&gt;https://sodakhacker.space&lt;/a&gt;.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>asm101</title>
       <link>http://localhost:1313/posts/asm101/</link>
@@ -103,60 +122,9 @@ int 0x10 ; call to printchars
       
       <guid>http://localhost:1313/about/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;overview&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I&amp;rsquo;ve been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position.&lt;/p&gt;
-&lt;h2 id=&#34;experience&#34;&gt;experience&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Network Penetration Testing&lt;/li&gt;
-&lt;li&gt;Web Application Penetration Testing&lt;/li&gt;
-&lt;li&gt;Proficiency in Linux systems&lt;/li&gt;
-&lt;li&gt;Scripting in Python and PowerShell&lt;/li&gt;
-&lt;li&gt;Infrastructure deployment and management through Ansible and Terraform&lt;/li&gt;
-&lt;li&gt;Version Control through Git&lt;/li&gt;
-&lt;li&gt;Application deployment and management through Docker utilizing Docker Compose&lt;/li&gt;
-&lt;li&gt;Virtualization through Proxmox (KVM), ESXi, and VMWare Workstation Pro&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;personal-projects&#34;&gt;personal projects&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Self-hosted Cyber Range through &lt;a href=&#34;https://docs.ludus.cloud/&#34;&gt;ludus&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;IaC version controlled HomeLab utilizing &lt;a href=&#34;https://nixos.org/&#34;&gt;NixOS&lt;/a&gt; publicly hosted on &lt;a href=&#34;https://github.com/mcculleytech/nixos-config&#34;&gt;GitHub&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;Secrets Management through &lt;a href=&#34;https://github.com/Mic92/sops-nix&#34;&gt;SOPS Nix&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Servers deployed with &lt;a href=&#34;https://grahamc.com/blog/erase-your-darlings/&#34;&gt;impermanance&lt;/a&gt;, rebuilding the systems at boot.&lt;/li&gt;
-&lt;li&gt;Mesh VPN Configured with Tailscale.&lt;/li&gt;
-&lt;li&gt;GitHub Action for automating package updates to repository.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Learning Terraform and AWS, DigitalOcean deployments.&lt;/li&gt;
-&lt;li&gt;Self Hosted LLM through ollama and OpenWebUI.&lt;/li&gt;
-&lt;li&gt;Version Controlled Hugo Website via GitHub (The site you&amp;rsquo;re on now!).
-&lt;ul&gt;
-&lt;li&gt;GitHub Action for AutoDeployment.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;certifications&#34;&gt;certifications&lt;/h2&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;a688c239-9846-49e6-9df5-353c49057516&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;8ad94de6-a6a5-4c34-a805-f5e6b777d5a9&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;6f85471e-0857-418e-8897-5d9630b47570&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;685b5d33-b59b-43b9-a087-20990fc52128&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;b2622dc2-452a-4579-a5db-d9baa52c4228&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;8b9e3bf7-2c03-4f0f-bb4e-996cf48a529f&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88be3e32-dc52-4c65-9820-e24977bd85a5&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88dab31a-431a-4e86-ac2e-c1aae23c5f4e&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;img src=&#34;https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/127337054&#34;&gt;
-&lt;img src=&#34;https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937&#34;&gt;
-&lt;h2 id=&#34;trainings&#34;&gt;trainings&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Mandiant Creative Red Team&lt;/li&gt;
-&lt;li&gt;Mandiant Azure Penetration Testing Basics (Custom training)&lt;/li&gt;
-&lt;li&gt;Mandiant Essentials of Malware Analysis&lt;/li&gt;
-&lt;li&gt;TCM Practical Ethical Hacker&lt;/li&gt;
-&lt;li&gt;TCM C# For Hackers&lt;/li&gt;
-&lt;li&gt;TCM Assembly 101&lt;/li&gt;
-&lt;li&gt;TCM Python 201 For Hackers&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;p&gt;I&amp;rsquo;ve been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I&amp;rsquo;ve been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!&lt;/p&gt;</description>
       <content>&lt;h2 id=&#34;overview&#34;&gt;overview&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I&amp;rsquo;ve been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I&amp;rsquo;ve been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!&lt;/p&gt;
 &lt;h2 id=&#34;experience&#34;&gt;experience&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Network Penetration Testing&lt;/li&gt;
@@ -180,6 +148,7 @@ int 0x10 ; call to printchars
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Learning Terraform and AWS, DigitalOcean deployments.&lt;/li&gt;
+&lt;li&gt;Malware Development through &lt;a href=&#34;https://maldevacademy.com/&#34;&gt;Maldev Academy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Self Hosted LLM through ollama and OpenWebUI.&lt;/li&gt;
 &lt;li&gt;Version Controlled Hugo Website via GitHub (The site you&amp;rsquo;re on now!).
 &lt;ul&gt;
@@ -196,8 +165,10 @@ int 0x10 ; call to printchars
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;8b9e3bf7-2c03-4f0f-bb4e-996cf48a529f&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88be3e32-dc52-4c65-9820-e24977bd85a5&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
 &lt;div data-iframe-width=&#34;150&#34; data-iframe-height=&#34;270&#34; data-share-badge-id=&#34;88dab31a-431a-4e86-ac2e-c1aae23c5f4e&#34; data-share-badge-host=&#34;https://www.credly.com&#34;&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;//cdn.credly.com/assets/utilities/embed.js&#34;&gt;&lt;/script&gt;
-&lt;img src=&#34;https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/127337054&#34;&gt;
-&lt;img src=&#34;https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937&#34;&gt;
+&lt;div style=&#34;display:flex; gap:1rem; align-items:center;&#34;&gt;
+  &lt;img src=&#34;https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/127337054&#34; width=&#34;150&#34;&gt;
+  &lt;img src=&#34;https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937&#34; width=&#34;150&#34;&gt;
+&lt;/div&gt;
 &lt;h2 id=&#34;trainings&#34;&gt;trainings&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Mandiant Creative Red Team&lt;/li&gt;
@@ -207,6 +178,7 @@ int 0x10 ; call to printchars
 &lt;li&gt;TCM C# For Hackers&lt;/li&gt;
 &lt;li&gt;TCM Assembly 101&lt;/li&gt;
 &lt;li&gt;TCM Python 201 For Hackers&lt;/li&gt;
+&lt;li&gt;HackTheBox Active Directory Penetration Tester Path&lt;/li&gt;
 &lt;/ul&gt;
 </content>
     </item>

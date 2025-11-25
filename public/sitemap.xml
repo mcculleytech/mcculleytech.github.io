@@ -3,10 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-04-11T15:41:07-05:00</lastmod>
+    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/hackerspace/</loc>
+    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/infrastructure/</loc>
+    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-04-11T15:41:07-05:00</lastmod>
+    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/</loc>
+    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/asm101/</loc>
     <lastmod>2025-03-21T21:21:54-05:00</lastmod>
@@ -24,9 +36,6 @@
     <lastmod>2025-03-21T21:21:54-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/reverse-engineering/</loc>
-    <lastmod>2025-03-21T21:21:54-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-03-21T21:21:54-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/tcm/</loc>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>custom debian installation :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Customizing old faithful" />
+<meta name="keywords" content="debian, linux" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/custom-debian-install/" />
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://localhost:1313/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://localhost:1313/img/theme-colors/red.png">
+  <link rel="apple-touch-icon" href="http://localhost:1313/img/theme-colors/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="custom debian installation">
+<meta property="og:description" content="Customizing old faithful" />
+<meta property="og:url" content="http://localhost:1313/posts/custom-debian-install/" />
+<meta property="og:site_name" content="" />
+
+  
+  
+  <meta property="og:image" content="http://localhost:1313/img/Debian.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-12-08 13:25:31 -0600 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</head>
+<body class="red">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    mcculleytech
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">about</a></li>
+        
+      
+        
+          <li><a href="https://sodakhacker.space">hackerspace</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+      
+        
+          <li><a href="/about" >about</a></li>
+        
+      
+        
+          <li><a href="https://sodakhacker.space" >hackerspace</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/custom-debian-install/">custom debian installation</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-12-08</time><span class="post-author">alex mcculley</span>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/tags/os/">os</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/linux/">linux</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/workstation/">workstation</a>&nbsp;
+      
+    </span>
+  
+  
+    
+    <img src="http://localhost:1313/img/Debian.jpg"
+      class="post-cover"
+      alt=" "
+      title="Cover Image" />
+  
+
+
+
+  
+    <div class="table-of-contents">
+      <h2>
+        Table of Contents
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">installation</a>
+      <ul>
+        <li><a href="#disk-partitioning">disk partitioning</a></li>
+        <li><a href="#enter-the-shell">enter the shell</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  
+
+  <div class="post-content"><div>
+        <h1 id="overview">overview<a href="#overview" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>I like btrfs. One of the main reasons I choose btrfs as a filesystem is for backup tools like snapper and timeshift. With these tools, your system is much more resilient to breaking on you since you can simply roll back to a previous snapshot! Besides the snapshots, I like the compression, the CoW filesystem, the list goes on. Unfortunately when it comes to installations, most distros make it a little frustrating to get the setup <em>exactly</em> how I want it. Not impossible but frustrating. While I love NixOS for it&rsquo;s immutability, IaC approach, and stability, I also love Debian. It&rsquo;s ole reliable in my eyes. The granddaddy of Linux distros. It&rsquo;s your favorite Linux distribution&rsquo;s favorite Linux distribution. For that reason, I wanted to document the process it takes to get my preferred setup which includes:</p>
+<ul>
+<li>UEFI boot</li>
+<li>Separate boot partition</li>
+<li>Passphrase encrypted LUKs container with BTRFS as filesystem</li>
+<li>Separate subvols for:
+<ul>
+<li>/root</li>
+<li>/home</li>
+<li>/var/log</li>
+<li>/snapshots
+It should be noted that this is my preferred installation for a desktop installation or if I was running Debian bare-metal. If it were a bare metal server I might try to configure a device for unencrypting the drive at boot for unattended reboots. I tend to not care <em>as much</em> about encryption on servers that are housed behind physical access controls. I personally think that encryption is an absolute necessity for laptops, and as a side note I think it&rsquo;s criminal for Microsoft to not allow for encryption on Windows Home versions. For VMs, I keep things a little simpler and make the host filesystem btrfs and the VM gets EXT4. If you&rsquo;re curious on that, I wrote a blog post on it for the hackerspace I&rsquo;m trying to get running <a href="https://sodakhacker.space/projects/vm-template/">here</a>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">installation<a href="#installation" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>We&rsquo;ll boot into Debian stable and go with &lsquo;Advanced Options&rsquo; -&gt; &lsquo;Expert Graphical Install&rsquo;. Then we&rsquo;ll walk through that, setting the language and keyboard layout. Once we hit the &lsquo;Load Installer components from installation media&rsquo; we&rsquo;ll hit quite a few of these components. To be honest, we probably don&rsquo;t need all of these, but we&rsquo;ll just add some additional ones to be safe.</p>
+<p><img src="/posts/custom-debian-install/components.png" alt="components"></p>
+<p>From the main menu, we&rsquo;ll detect the network devices and configure that to whatever our network setup is. We&rsquo;ll select a mirror of the Debian archive, I recommend whatever is physically closest to you, and setup users and passwords as needed. After clock configuration, we move into the disk detection and setup. This is where the magic happens.</p>
+<h3 id="disk-partitioning">disk partitioning<a href="#disk-partitioning" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>First we select &lsquo;Manual&rsquo; under disk partition and configure a new partition table in <code>gpt</code> by selecting our disk we want to install Debian on. Once we have the partition table setup, we select the free space and create a 512MB partition for EFI and configure it as such:</p>
+<p><img src="/posts/custom-debian-install/efi-part.png" alt="efi-part"></p>
+<p>After that we create a 2GB partition, format it as EXT4 and mount it at <code>/boot</code>. Again we select the <code>FREE SPACE</code> to do so.</p>
+<p><img src="/posts/custom-debian-install/boot-part.png" alt="boot-part"></p>
+<p>With that out of the way, we move into our LUKS partition. We select &lsquo;Configure encrypted volumes&rsquo; at the top of the menu. Confirm writing the partitions we have configured so far. Then select &lsquo;Create encrypted volumes&rsquo; and select the free space on our drive. Give it a name, and choose to erase the data or not. It may take a while but it is best practice.</p>
+<p><img src="/posts/custom-debian-install/btrfs-crypt.png" alt="btrfs-crypt"></p>
+<p>After that write the changes and configure the encrypted volumes. From the main encryption drive menu select &lsquo;Finish&rsquo;. This will prompt for a passphrase on the partition. Once this is finished, we get dumped back at the main disk partition menu. We now have an additional option at the top of our partition menu that allows us to configure the unlocked LUKS container. We&rsquo;ll need to configure that for btrfs by selecting the new entry and mount it at root. We&rsquo;ll select the &lsquo;Finish partitioning and write changes to disk&rsquo; option at the very bottom and then move into the console. Your partitions should look something like this before selecting &lsquo;Finish partitioning and write changes to disk&rsquo;:</p>
+<p><img src="/posts/custom-debian-install/post-crypt.png" alt="post-crypt"></p>
+<p>You&rsquo;ll get an error stating that there&rsquo;s no swap partition. You can either add one within the LUKS container or you can configure zswap or have no swap. That&rsquo;s up to you.</p>
+<p><strong>Note, if you didn&rsquo;t select expert install the installer will automatically install the base system. This isn&rsquo;t ideal because we haven&rsquo;t configured the subvols yet.</strong></p>
+<h3 id="enter-the-shell">enter the shell<a href="#enter-the-shell" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Now we move into a console by hitting <code>Ctrl+Fn+Alt F2</code>. This will dump us into a busybox shell. We can see where things are mounted with <code>df -h</code>. We can see that currently our btrfs partition is mounted at <code>/target</code>. However, this is actually the root subvol mounted. We need to unmount <code>/target</code>, <code>/target/boot</code>, and <code>/target/boot/efi</code> to continue.</p>
+<p><img src="/posts/custom-debian-install/initial-disk-busybox.png" alt="init-disk-busybox"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>umount /target/boot/efi
+</span></span><span style="display:flex;"><span>umount /target/boot
+</span></span><span style="display:flex;"><span>umount /target
+</span></span></code></pre></div><p>Now we mount the unlocked luks container partition with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mount /dev/mapper/sda3_crypt /target
+</span></span><span style="display:flex;"><span>cd /target
+</span></span></code></pre></div><p>We can see the root subvol given the name <code>@rootfs</code>. We&rsquo;ll just change that to <code>@</code> and create our new subvols:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv @rootfs @
+</span></span><span style="display:flex;"><span>btrfs subvol create @home
+</span></span><span style="display:flex;"><span>btrfs subvol create @snapshots
+</span></span><span style="display:flex;"><span>btrfs subvol create @var_log
+</span></span></code></pre></div><p>With our subvols created, we can remount our root subvol, create proper directories to mount the additional subvols, and remount our boot and efi partitions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>umount /target
+</span></span><span style="display:flex;"><span>mount -o noatime,space_cache<span style="color:#f92672">=</span>v2,compress<span style="color:#f92672">=</span>zstd,ssd,discard<span style="color:#f92672">=</span>async,subvol<span style="color:#f92672">=</span>@ /dev/mapper/sda3_crypt /target
+</span></span><span style="display:flex;"><span>mkdir -p /target/home /target/var/log /target/snapshots
+</span></span><span style="display:flex;"><span>mount -o noatime,space_cache<span style="color:#f92672">=</span>v2,compress<span style="color:#f92672">=</span>zstd,ssd,discard<span style="color:#f92672">=</span>async,subvol<span style="color:#f92672">=</span>@home /dev/mapper/sda3_crypt /target/home
+</span></span><span style="display:flex;"><span>mount -o noatime,space_cache<span style="color:#f92672">=</span>v2,compress<span style="color:#f92672">=</span>zstd,ssd,discard<span style="color:#f92672">=</span>async,subvol<span style="color:#f92672">=</span>@snapshots /dev/mapper/sda3_crypt /target/snapshots
+</span></span><span style="display:flex;"><span>mount -o noatime,space_cache<span style="color:#f92672">=</span>v2,compress<span style="color:#f92672">=</span>zstd,ssd,discard<span style="color:#f92672">=</span>async,subvol<span style="color:#f92672">=</span>@var_log /dev/mapper/sda3_crypt /target/var/log
+</span></span><span style="display:flex;"><span>mount /dev/sda2 /target/boot
+</span></span><span style="display:flex;"><span>mount /dev/sda1 /target/boot/efi
+</span></span></code></pre></div><p>After mounting all the subvols and partitions, your output of <code>df -h</code> should look like:</p>
+<p><img src="/posts/custom-debian-install/mounts.png" alt="mounts"></p>
+<p>Once that&rsquo;s been verified we can move into modifying <code>/target/etc/fstab</code> with <code>nano</code>. We can copy lines with <code>Alt + 6</code> and <code>Ctrl + U</code>. Don&rsquo;t forget to add the mount options to take advantage of some of the features of btrfs:</p>
+<p><img src="/posts/custom-debian-install/fstab.png" alt="fstab"></p>
+<p>In case you&rsquo;re curious on what each mount option does:</p>
+<ul>
+<li><code>noatime</code> - This option doesn&rsquo;t update the last accessed time on a file when it&rsquo;s read. Doing that creates a write on the file and isn&rsquo;t needed on SSDs or NVME drives.</li>
+<li><code>space_cache=v2</code> - Sets the space cache (which is how btrfs knows what parts of the disk are free) to be version 2, the more modern option.</li>
+<li><code>compress=zstd</code> - Sets compression algorithm to <code>zstd</code>. It&rsquo;s a good compression algorithm that doesn&rsquo;t take a lot of CPU overhead.</li>
+<li><code>ssd</code> - Sets btrfs to behave in a way best suited for ssds. Technically it should detect this by default.</li>
+<li><code>discard=async</code> - Sets TRIM (the operation of erasing storage blocks) to be async allowing those operations to be pooled and performed in the background. If not set properly can lead to weird system pauses.</li>
+<li><code>subvol=@</code> - Mounts the appropriate subvolume in the right location.</li>
+</ul>
+<p>Double check that these entries are correct - otherwise you won&rsquo;t have a bootable system. Once that&rsquo;s done, we can move back to the gui installer and install the base system with <code>Ctrl+Fn+Alt F5</code>. At this point, the hard part is over. I select the defaults for the kernel installation generic kernel module stuff. Once that step is done, you can continue to install a DE if you&rsquo;d like. And that&rsquo;s it! Boot into your system and enjoy an encrypted btrfs Debian system!</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/">
+                <span class="button__text">the sodak hackerspace</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>2025</span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

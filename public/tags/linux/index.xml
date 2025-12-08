@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on </title>
+    <link>http://localhost:1313/tags/linux/</link>
+    <description>Recent content in Linux on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 08 Dec 2025 13:25:31 -0600</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Custom Debian Installation</title>
+      <link>http://localhost:1313/posts/custom-debian-install/</link>
+      <pubDate>Mon, 08 Dec 2025 13:25:31 -0600</pubDate>
+      
+      <guid>http://localhost:1313/posts/custom-debian-install/</guid>
+      <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;I like btrfs. I like the snapshots, the compression, the CoW filesystem, the list goes on. Unfortunately when it comes to installations, most distros make it a little frustrating to get the setup &lt;em&gt;exactly&lt;/em&gt; how I want it. Not impossible but frustrating. While I love NixOS for it&amp;rsquo;s immutability, IaC approach, and stability, I also love Debian. It&amp;rsquo;s ole reliable in my eyes. The grandaddy of Linux distros. It&amp;rsquo;s your favorite Linux distribution&amp;rsquo;s favorite Linux distribution. For that reason, I wanted to document the process it takes to get my preferred setup which includes:&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
+&lt;p&gt;I like btrfs. I like the snapshots, the compression, the CoW filesystem, the list goes on. Unfortunately when it comes to installations, most distros make it a little frustrating to get the setup &lt;em&gt;exactly&lt;/em&gt; how I want it. Not impossible but frustrating. While I love NixOS for it&amp;rsquo;s immutability, IaC approach, and stability, I also love Debian. It&amp;rsquo;s ole reliable in my eyes. The grandaddy of Linux distros. It&amp;rsquo;s your favorite Linux distribution&amp;rsquo;s favorite Linux distribution. For that reason, I wanted to document the process it takes to get my preferred setup which includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UEFI boot&lt;/li&gt;
+&lt;li&gt;Separate boot partition&lt;/li&gt;
+&lt;li&gt;Passphrase encrypted LUKs container with BTRFS as filesystem&lt;/li&gt;
+&lt;li&gt;Separate subvols for:
+&lt;ul&gt;
+&lt;li&gt;/root&lt;/li&gt;
+&lt;li&gt;/home&lt;/li&gt;
+&lt;li&gt;/var/log&lt;/li&gt;
+&lt;li&gt;/snapshots
+It should be noted that this is my preferred installation for a desktop installation or if I was running Debian bare-metal. If it was a bare metal server I might try to configure a device for unencrypting the drive at boot for unattended reboots. I tend to not care &lt;em&gt;as much&lt;/em&gt; about encryption on servers that are housed behind physical access controls. I personally think that encryption is an absolute necessity for laptops, and as a side note I think it&amp;rsquo;s criminal for Microsoft to not allow for encryption on Windows Home versions. For VMs, I keep things a little simpler and make the host filesystem btrfs and the VM gets EXT4. If you&amp;rsquo;re curious on that, I wrote a blog post on it for the hackerspace I&amp;rsquo;m trying to get running &lt;a href=&#34;https://sodakhacker.space/projects/vm-template/&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;installation&#34;&gt;installation&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ll boot into Debian stable and go with &amp;lsquo;Advanced Options&amp;rsquo; -&amp;gt; &amp;lsquo;Expert Graphical Install&amp;rsquo;. Then we&amp;rsquo;ll walk through that setting the language and keyboard layout. Once we hit the &amp;lsquo;Load Installer components from installation media&amp;rsquo; we&amp;rsquo;ll hit a few of these. To be honest, we probably don&amp;rsquo;t need all of these, but we&amp;rsquo;ll just add some additional ones to be safe.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/custom-debian-install/components.png&#34; alt=&#34;components&#34;&gt;&lt;/p&gt;
+&lt;p&gt;From the main menu, we&amp;rsquo;ll detect the network devices and configure that to whatever our network setup is. We&amp;rsquo;ll select a mirror of the Debian archive, I recommend whatever is physically closest to you, and setup users and passwords as needed. After clock configuration, we move into the disk detection and setup. This is where the magic happens.&lt;/p&gt;
+&lt;h3 id=&#34;disk-partitioning&#34;&gt;disk partitioning&lt;/h3&gt;
+&lt;p&gt;First we select &amp;lsquo;Manual&amp;rsquo; under disk partition and configure a new partition table in &lt;code&gt;gpt&lt;/code&gt; by selecting our disk we want to install Debian on. Once we have the partition table setup, we select the free space and create a 512MB partition for EFI and configure it as such:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/custom-debian-install/efi-part.png&#34; alt=&#34;efi-part&#34;&gt;&lt;/p&gt;
+&lt;p&gt;After that we create a 2GB partition, format it as EXT4 and mount it at &lt;code&gt;/boot&lt;/code&gt;. Again we select the &lt;code&gt;FREE SPACE&lt;/code&gt; to do so.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/custom-debian-install/boot-part.png&#34; alt=&#34;boot-part&#34;&gt;&lt;/p&gt;
+&lt;p&gt;With that out of the way, we move into our LUKS partition. We select &amp;lsquo;Configure encrypted volumes&amp;rsquo; at the top of the menu. We&amp;rsquo;ll have to write our changes to disk for this part. We select &amp;lsquo;Create encrypted volumes&amp;rsquo; and select the free space on our drive. Give it a name, and you can choose to erase the data or not. It may take a while but it is best practice.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/custom-debian-install/btrfs-crypt.png&#34; alt=&#34;btrfs-crypt&#34;&gt;&lt;/p&gt;
+&lt;p&gt;After that write the changes and configure the encrypted volumes. From the main encryption drive menu select &amp;lsquo;Finish&amp;rsquo;. This will prompt for a passphrase on the partition. Once this is finished, we get dumped back at the main disk partition menu. We now have an additional option at the top of our partition menu that allows us to configure the unlocked luks container. We&amp;rsquo;ll need to configure that for btrfs by selecting the new entry and mount it at root. We&amp;rsquo;ll select the &amp;lsquo;Finish partitioning and write changes to disk&amp;rsquo; option at the very bottom and then move into the console. Your partitions should look something like this before selecting &amp;lsquo;Finish partitioning and write changes to disk&amp;rsquo;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/custom-debian-install/post-crypt.png&#34; alt=&#34;post-crypt&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll get an error stating that there&amp;rsquo;s no swap partition. You can either add one within the LUKS container or you can configure zswap or have no swap. That&amp;rsquo;s up to you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note, if you didn&amp;rsquo;t select expert install the installer will automatically install the base system. This isn&amp;rsquo;t ideal because we haven&amp;rsquo;t configured the subvols yet.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;enter-the-shell&#34;&gt;enter the shell&lt;/h3&gt;
+&lt;p&gt;Now we move into a console by hitting &lt;code&gt;Ctrl+Fn+Alt F2&lt;/code&gt; . This will dump us into a busybox shell. We can see where things are mounted with &lt;code&gt;df -h&lt;/code&gt;. We can see that currently our btrfs partition is mounted at &lt;code&gt;/target&lt;/code&gt; however, this is actually the root subvol mounted. We need to unmount &lt;code&gt;/target&lt;/code&gt;, &lt;code&gt;/target/boot&lt;/code&gt;, and &lt;code&gt;/target/boot/efi&lt;/code&gt; to continue.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/custom-debian-install/initial-disk-busybox.png&#34; alt=&#34;init-disk-busybox&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;umount /target/boot/efi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;umount /target/boot
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;umount /target
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now we mount the unlocked luks container partition with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount /dev/mapper/sda3_crypt /target
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /target
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see the root subvol given the name &lt;code&gt;@rootfs&lt;/code&gt;. We&amp;rsquo;ll just change that to &lt;code&gt;@&lt;/code&gt; and create our new subvols:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mv @rootfs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;btrfs subvol create @home
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;btrfs subvol create @snapshots
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;btrfs subvol create @var_log
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With our subvols created, we can remount our root subvol, create proper directories to mount the additional subvols, and remount our boot and efi partitions.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;umount /target
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount -o noatime,space_cache&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;v2,compress&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;zstd,ssd,discard&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;async,subvol&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;@ /dev/mapper/sda3_crypt /target
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir -p /target/home /target/var/log /target/snapshots
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount -o noatime,space_cache&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;v2,compress&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;zstd,ssd,discard&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;async,subvol&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;@home /dev/mapper/sda3_crypt /target/home
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount -o noatime,space_cache&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;v2,compress&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;zstd,ssd,discard&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;async,subvol&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;@snapshots /dev/mapper/sda3_crypt /target/snapshots
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount -o noatime,space_cache&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;v2,compress&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;zstd,ssd,discard&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;async,subvol&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;@var_log /dev/mapper/sda3_crypt /target/var/log
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount /dev/sda2 /target/boot
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mount /dev/sda1 /target/boot/efi
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ensure that all your mount points are correct with &lt;code&gt;df -h&lt;/code&gt;. Once that&amp;rsquo;s been verified we can move into modifying &lt;code&gt;/etc/fstab&lt;/code&gt; with &lt;code&gt;nano&lt;/code&gt;. We can copy lines with &lt;code&gt;Alt + 6&lt;/code&gt; and &lt;code&gt;Ctrl + U&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Double check that these entries are correct, otherwise you won&amp;rsquo;t have a bootable system. Once that&amp;rsquo;s done, we can move back to the gui installer and install the base system with &lt;code&gt;Ctrl+Fn+Alt F5&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;At this point the hard part is over. I select the defaults for the kernel installation and you can continue to install a DE if you&amp;rsquo;d like. One of the main reasons I choose btrfs as a filesystem is for backup tools like snapper and timeshift, with these tools, your system is much more resilient to breaking on you since you can simply roll back to a previous snapshot!&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

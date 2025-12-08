@@ -3,18 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/custom-debian-install/</loc>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/linux/</loc>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/os/</loc>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/workstation/</loc>
+    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/hackerspace/</loc>
     <lastmod>2025-11-19T13:24:08-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/infrastructure/</loc>
-    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-11-19T13:24:08-06:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-11-19T13:24:08-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/</loc>

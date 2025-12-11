@@ -3,7 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/cybersecurity/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cybersecurity/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/ludus/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/ludus/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/offensive-security/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-12-10T20:38:09-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/custom-debian-install/</loc>
     <lastmod>2025-12-08T13:25:31-06:00</lastmod>
@@ -12,12 +36,6 @@
     <lastmod>2025-12-08T13:25:31-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/os/</loc>
-    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-12-08T13:25:31-06:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-12-08T13:25:31-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/workstation/</loc>
@@ -41,9 +59,6 @@
     <loc>http://localhost:1313/tags/assembly/</loc>
     <lastmod>2025-03-21T21:21:54-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-03-21T21:21:54-05:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/categories/programming/</loc>
     <lastmod>2025-03-21T21:21:54-05:00</lastmod>
   </url><url>
@@ -57,9 +72,6 @@
     <lastmod>2025-03-21T21:21:54-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/certifications/</loc>
-    <lastmod>2025-03-21T21:13:47-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/offensive-security/</loc>
     <lastmod>2025-03-21T21:13:47-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/penetration-testing/</loc>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>ludus :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="In offensive security the ability to test out attacks in a lab is invaluable - knowing that you&rsquo;re going to see a certain piece of software, OS, or networking configuration, having a place to test out TTPs is the best type of preparation you can do. Ludus is a self-hostable cyber range built on Proxmox, Ansible and Packer. It helps to automate one of the most tedious aspects of security, deploying testing environments. One of the best things about Ludus is that it&rsquo;s an overlay on Proxmox, not a replacement. This means that any Ludus range is still a completely viable Proxmox machine for other workloads. Personally I like to run Ludus on its own system if possible in order to separate production systems and ranges.
+" />
+<meta name="keywords" content="offensive security, linux, self-hosting" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/ludus/" />
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://localhost:1313/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://localhost:1313/img/theme-colors/red.png">
+  <link rel="apple-touch-icon" href="http://localhost:1313/img/theme-colors/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="alex mcculley" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ludus">
+<meta property="og:description" content="In offensive security the ability to test out attacks in a lab is invaluable - knowing that you&rsquo;re going to see a certain piece of software, OS, or networking configuration, having a place to test out TTPs is the best type of preparation you can do. Ludus is a self-hostable cyber range built on Proxmox, Ansible and Packer. It helps to automate one of the most tedious aspects of security, deploying testing environments. One of the best things about Ludus is that it&rsquo;s an overlay on Proxmox, not a replacement. This means that any Ludus range is still a completely viable Proxmox machine for other workloads. Personally I like to run Ludus on its own system if possible in order to separate production systems and ranges.
+" />
+<meta property="og:url" content="http://localhost:1313/posts/ludus/" />
+<meta property="og:site_name" content="" />
+
+  
+  
+  <meta property="og:image" content="https://ludus.cloud/opengraph-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+  <meta property="article:section" content="cybersecurity" />
+
+  <meta property="article:section" content="offensive-security" />
+
+
+  <meta property="article:published_time" content="2025-12-10 20:38:09 -0600 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</head>
+<body class="red">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    mcculleytech
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">about</a></li>
+        
+      
+        
+          <li><a href="https://sodakhacker.space">hackerspace</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+      
+        
+          <li><a href="/about" >about</a></li>
+        
+      
+        
+          <li><a href="https://sodakhacker.space" >hackerspace</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/ludus/">ludus</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-12-10</time><span class="post-author">alex mcculley</span>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/tags/cybersecurity/">cybersecurity</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/ludus/">ludus</a>&nbsp;
+      
+    </span>
+  
+  
+    
+    <img src="https://ludus.cloud/opengraph-image.png"
+      class="post-cover"
+      alt=" "
+      title="Cover Image" />
+  
+
+
+
+  
+    <div class="table-of-contents">
+      <h2>
+        Table of Contents
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#networking">networking</a></li>
+    <li><a href="#use-cases">use cases</a></li>
+    <li><a href="#final-thoughts">final thoughts</a></li>
+  </ul>
+</nav>
+    </div>
+  
+
+  <div class="post-content"><div>
+        <p>In offensive security the ability to test out attacks in a lab is invaluable - knowing that you&rsquo;re going to see a certain piece of software, OS, or networking configuration, having a place to test out TTPs is the best type of preparation you can do.  <a href="https://ludus.cloud">Ludus</a> is a self-hostable cyber range built on Proxmox, Ansible and Packer. It helps to automate one of the most tedious aspects of security, deploying testing environments. One of the best things about Ludus is that it&rsquo;s an overlay on Proxmox, not a replacement. This means that any Ludus range is still a completely viable Proxmox machine for other workloads. Personally I like to run Ludus on its own system if possible in order to separate production systems and ranges.</p>
+<p><a href="https://docs.ludus.cloud/docs/intro/">The documentation</a> for Ludus is really well done. I&rsquo;ve managed a few different instances of Ludus and frequently use it for reference. Even the stuff that&rsquo;s not explicitly in the docs can be inferred from what is there. The discord chat for Ludus is also an incredible resource, I&rsquo;ve gotten some help from there as well.</p>
+<p>Because Ludus is built partially on Ansible, there are a plethora of Ansible roles you can use to include various configurations into your range including: mythic C2 deployment, elastic edr, active directory vulns, etc. There are also preconfigured vulnerable environments available to deploy, alter, and attack including the GOAD (Game of Active Directory) project.</p>
+<h2 id="networking">networking<a href="#networking" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The networking configured in Ludus is really clever. The Proxmox server also acts as a WireGuard server and grants access to some shared resources if deployed (ie a fileshare server that&rsquo;s accessible to all ranges and users) as well as thier own range and shared ranges. Each user gets a Linux bridge which acts as a virtual switch. The machines deployed by the user for their range then get assigned that bridge as their network device and the router within that range manages the traffic within the range. Here&rsquo;s a network diagram of what Ludus does under the hood:</p>
+<p><img src="https://docs.ludus.cloud/assets/images/network-483059485d94fbcef431ea8303a996e7.png" alt="Ludus networking Config"></p>
+<p>With this networking setup, Ludus is able to provide another really cool feature called testing mode. In testing mode, a user&rsquo;s range is cut off from the internet but not from other machines within the range and not from the user via WireGuard. A snapshot is taken of every system in a range before testing mode and when the range gets taken out of testing it rolls back to the snapshot before testing was enabled. This is an incredible setup for both malware development and malware analysis, although additional precautions should be taken for the latter.</p>
+<p>This isn&rsquo;t an extensive examination of all the features of Ludus when it comes to networking. These are just some of the features I think are interesting. For more information on Ludus&rsquo; networking configuration, see the <a href="https://docs.ludus.cloud/docs/networking">networking documentation</a>.</p>
+<h2 id="use-cases">use cases<a href="#use-cases" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>I&rsquo;ve deployed a few different Ludus ranges for different use cases. The primary use case I have with Ludus is deploying GOAD environments and attacking active directory. As mentioned before you can deploy something like elastic edr into the range in order to try more evasive testing which is a great way to build up the skillset. I&rsquo;ve started tinkering with malware development as well. I&rsquo;ve configured a range with a windows box for the development (with MS Defender disabled ) and then one for the testing (with MS Defender enabled) and the workflow with that is really smooth and adding on testing mode makes it easy to avoid uploading signatures and things of that nature.</p>
+<h2 id="final-thoughts">final thoughts<a href="#final-thoughts" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>There&rsquo;s a lot of things to like about Ludus. The self-hosted nature of it, built on solid automation tooling, the ease of community contributions, the list goes on and on. But the best thing is that it lowers the barrier to entry into such a complicated field. I remember having to manually set up Active Directory environments for testing when I was first starting out in offensive security. While doing the deployment a few times is good to understand the process, after the 10th time it gets tedious. This project saves so much time and simplifies lab configuration into IaC which is a truly incredible thing. And while it&rsquo;s recommended to have a decent amount of resources, you can scale your range down to what meets your needs. A domain controller and client should be able to run even on low end hardware. So give Ludus a try!</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="http://localhost:1313/posts/custom-debian-install/">
+                <span class="button__text">custom debian installation</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>2025</span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "/Users/alex/Repositories/mcculleytech.github.io",
+	"sourceRoot": "/home/alex/Repositories/mcculleytech.github.io",
 	"sources": [
 		"css/base.scss",
 		"themes/re-terminal/assets/css/variables.scss",

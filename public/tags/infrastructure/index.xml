@@ -2,17 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Infrastructure on </title>
-    <link>http://localhost:1313/tags/infrastructure/</link>
+    <link>https://mcculley.tech/tags/infrastructure/</link>
     <description>Recent content in Infrastructure on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 19 Nov 2025 13:24:08 -0600</lastBuildDate><atom:link href="http://localhost:1313/tags/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Nov 2025 13:24:08 -0600</lastBuildDate><atom:link href="https://mcculley.tech/tags/infrastructure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>the sodak hackerspace</title>
-      <link>http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/</link>
+      <link>https://mcculley.tech/posts/intro_to_hackerspace/intro_to_hackerspace/</link>
       <pubDate>Wed, 19 Nov 2025 13:24:08 -0600</pubDate>
-      
-      <guid>http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/</guid>
+      <guid>https://mcculley.tech/posts/intro_to_hackerspace/intro_to_hackerspace/</guid>
       <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
 &lt;p&gt;My HomeLab has been the biggest boon to my career in IT. It provided me a space to deploy, manage, and experiment with different technologies and also reduce my reliance on big tech companies by self hosting my own services. It&amp;rsquo;s been a lot of fun to build, deploy, break, upgrade, and learn in my own little kingdom so to speak. A while back I was listening to a podcast, I believe it was &lt;a href=&#34;https://linuxunplugged.com/&#34;&gt;Linux Unplugged&lt;/a&gt; and one of the hosts mentioned that they visited a hackerspace in Berlin. The name alone was enticing but to hear them describe this enclave of technology enthusiasts that meets up and works on projects, learn from each other and have a space to nerd out over things sounded incredible and made me wonder if I could pull something like that off in my own community.&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;

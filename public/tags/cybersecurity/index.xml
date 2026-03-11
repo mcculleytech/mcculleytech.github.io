@@ -2,17 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cybersecurity on </title>
-    <link>http://localhost:1313/tags/cybersecurity/</link>
+    <link>https://mcculley.tech/tags/cybersecurity/</link>
     <description>Recent content in Cybersecurity on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 10 Dec 2025 20:38:09 -0600</lastBuildDate><atom:link href="http://localhost:1313/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Mar 2026 12:44:20 -0500</lastBuildDate><atom:link href="https://mcculley.tech/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ai</title>
+      <link>https://mcculley.tech/posts/ai/</link>
+      <pubDate>Wed, 11 Mar 2026 12:44:20 -0500</pubDate>
+      <guid>https://mcculley.tech/posts/ai/</guid>
+      <description>&lt;p&gt;Early last year the word &amp;lsquo;agentic&amp;rsquo; started to get thrown around a lot in regards to AI without much to show for it for much of the year. So much so that I started to dismiss it as a corporate buzzword, relegated to the likes of AI generated LinkedIn posts and scam online universities that want to make a quick buck.&lt;/p&gt;
+&lt;p&gt;All of that changed in the last month. I dropped into my GOAD range, wrote a couple of skills files, made my CLAUDE.md to help do some hand holding and let it rip. A few approvals of some shell commands and BOOM! A decent little enumeration of an Active Directory domain with legitimate next steps suggested and findings recorded and remediation advice given.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Early last year the word &amp;lsquo;agentic&amp;rsquo; started to get thrown around a lot in regards to AI without much to show for it for much of the year. So much so that I started to dismiss it as a corporate buzzword, relegated to the likes of AI generated LinkedIn posts and scam online universities that want to make a quick buck.&lt;/p&gt;
+&lt;p&gt;All of that changed in the last month. I dropped into my GOAD range, wrote a couple of skills files, made my CLAUDE.md to help do some hand holding and let it rip. A few approvals of some shell commands and BOOM! A decent little enumeration of an Active Directory domain with legitimate next steps suggested and findings recorded and remediation advice given.&lt;/p&gt;
+&lt;p&gt;The realization was a shock to the system. All of the commands and TTPs that I&amp;rsquo;d been studying for years and slaving away to understand how they work - now at my fingertips and executed exactly as specified in natural language. From excitement at the possibilities, to panicking to learn how it all works, to existential career woes, to a more realistic and levelheadedness about the tools moving forward, it&amp;rsquo;s been an absolute rollercoaster ride. It&amp;rsquo;s worth saying that buying a Claude Max license doesn&amp;rsquo;t automatically make someone a hacker, but it does make them more dangerous, all for $100/month. And while Blue teams have the ability to automate, contextualize and move quicker than ever before - I think threat actors still have a massive upper hand. Defenders still need to catch everything that threat actors are throwing at them, and with agents they just got a ton more ammunition. Not only that but the sheer amount of bureaucracy and budget constraints that Blue teams have to deal with to implement the technology and to respond when it triggers alerts gives attackers the upper hand.&lt;/p&gt;
+&lt;p&gt;And my job is to emulate attackers, so I&amp;rsquo;m adapting my workflows to include AI. Not only in my professional career but in my homelab to understand better how agents operate. A part of me hates it. A part of me wishes that this wasn&amp;rsquo;t the trend of technology, but I can&amp;rsquo;t change that and adaptation is necessary for career survival. And to add to the split mindedness I have there&amp;rsquo;s another part of me that&amp;rsquo;s starting to get excited about the technology. I&amp;rsquo;ve been successfully utilizing AI in various capacities over the past couple of weeks and it&amp;rsquo;s allowed me to implement some long outstanding items on my todo list for my homelab and streamline a few workflows in my job.&lt;/p&gt;
+&lt;p&gt;Perhaps my fears of AI being the next cotton gin are unfounded and entirely made up in my own mind. Maybe companies won&amp;rsquo;t expect employees to do more and cause burnout at exponentially increasing rates due to unrealistic expectations. Only time will tell.&lt;/p&gt;
+&lt;p&gt;I plan on still doing some things the old fashioned way. Just a terminal and a web page with docs open to whatever it is I&amp;rsquo;m working on and some music playing in the background. The struggle is still how we learn as humans and the fundamentals are more important now than ever.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>ludus</title>
-      <link>http://localhost:1313/posts/ludus/</link>
+      <link>https://mcculley.tech/posts/ludus/</link>
       <pubDate>Wed, 10 Dec 2025 20:38:09 -0600</pubDate>
-      
-      <guid>http://localhost:1313/posts/ludus/</guid>
+      <guid>https://mcculley.tech/posts/ludus/</guid>
       <description>&lt;p&gt;In offensive security the ability to test out attacks in a lab is invaluable - knowing that you&amp;rsquo;re going to see a certain piece of software, OS, or networking configuration, having a place to test out TTPs is the best type of preparation you can do.  &lt;a href=&#34;https://ludus.cloud&#34;&gt;Ludus&lt;/a&gt; is a self-hostable cyber range built on Proxmox, Ansible and Packer. It helps to automate one of the most tedious aspects of security, deploying testing environments. One of the best things about Ludus is that it&amp;rsquo;s an overlay on Proxmox, not a replacement. This means that any Ludus range is still a completely viable Proxmox machine for other workloads. Personally I like to run Ludus on its own system if possible in order to separate production systems and ranges.&lt;/p&gt;</description>
       <content>&lt;p&gt;In offensive security the ability to test out attacks in a lab is invaluable - knowing that you&amp;rsquo;re going to see a certain piece of software, OS, or networking configuration, having a place to test out TTPs is the best type of preparation you can do.  &lt;a href=&#34;https://ludus.cloud&#34;&gt;Ludus&lt;/a&gt; is a self-hostable cyber range built on Proxmox, Ansible and Packer. It helps to automate one of the most tedious aspects of security, deploying testing environments. One of the best things about Ludus is that it&amp;rsquo;s an overlay on Proxmox, not a replacement. This means that any Ludus range is still a completely viable Proxmox machine for other workloads. Personally I like to run Ludus on its own system if possible in order to separate production systems and ranges.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://docs.ludus.cloud/docs/intro/&#34;&gt;The documentation&lt;/a&gt; for Ludus is really well done. I&amp;rsquo;ve managed a few different instances of Ludus and frequently use it for reference. Even the stuff that&amp;rsquo;s not explicitly in the docs can be inferred from what is there. The discord chat for Ludus is also an incredible resource, I&amp;rsquo;ve gotten some help from there as well.&lt;/p&gt;

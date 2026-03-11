@@ -2,17 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Penetration-Testing on </title>
-    <link>http://localhost:1313/categories/penetration-testing/</link>
+    <link>https://mcculley.tech/categories/penetration-testing/</link>
     <description>Recent content in Penetration-Testing on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 21 Mar 2025 21:13:47 -0500</lastBuildDate><atom:link href="http://localhost:1313/categories/penetration-testing/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Mar 2025 21:13:47 -0500</lastBuildDate><atom:link href="https://mcculley.tech/categories/penetration-testing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>pjpt</title>
-      <link>http://localhost:1313/posts/pjpt/</link>
+      <link>https://mcculley.tech/posts/pjpt/</link>
       <pubDate>Fri, 21 Mar 2025 21:13:47 -0500</pubDate>
-      
-      <guid>http://localhost:1313/posts/pjpt/</guid>
+      <guid>https://mcculley.tech/posts/pjpt/</guid>
       <description>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;
 &lt;p&gt;Last year I focused on acquiring my 1st Offensive security certification. I chose the PJPT (Practical Junior Penetration Tester) because I had taken some training from TCM a while back and thought it was good material, and the cost was easy to justify. I managed to get the certification the second attempt (more on that later). Overall found the experience to be a good one, and recommend it for beginners. I really like the hands on keyboard style of examination and found this to be a great entry level exam for someone like myself who&amp;rsquo;s done some amount of network penetration testing, but wanted to take a low stakes level exam to get used to the format and the formal report writing.&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;overview&#34;&gt;overview&lt;/h1&gt;

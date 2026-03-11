@@ -11,6 +11,7 @@ showFullContent = false
 readingTime = false
 hideComments = false
 color = "" #color from the theme settings
+aiDisclaimer = false
 +++
 
 In offensive security the ability to test out attacks in a lab is invaluable - knowing that you're going to see a certain piece of software, OS, or networking configuration, having a place to test out TTPs is the best type of preparation you can do.  [Ludus](https://ludus.cloud) is a self-hostable cyber range built on Proxmox, Ansible and Packer. It helps to automate one of the most tedious aspects of security, deploying testing environments. One of the best things about Ludus is that it's an overlay on Proxmox, not a replacement. This means that any Ludus range is still a completely viable Proxmox machine for other workloads. Personally I like to run Ludus on its own system if possible in order to separate production systems and ranges.

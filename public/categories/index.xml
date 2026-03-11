@@ -2,77 +2,70 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on </title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://mcculley.tech/categories/</link>
     <description>Recent content in Categories on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 10 Dec 2025 20:38:09 -0600</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Dec 2025 20:38:09 -0600</lastBuildDate><atom:link href="https://mcculley.tech/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cybersecurity</title>
-      <link>http://localhost:1313/categories/cybersecurity/</link>
+      <link>https://mcculley.tech/categories/cybersecurity/</link>
       <pubDate>Wed, 10 Dec 2025 20:38:09 -0600</pubDate>
-      
-      <guid>http://localhost:1313/categories/cybersecurity/</guid>
+      <guid>https://mcculley.tech/categories/cybersecurity/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Offensive-Security</title>
-      <link>http://localhost:1313/categories/offensive-security/</link>
+      <link>https://mcculley.tech/categories/offensive-security/</link>
       <pubDate>Wed, 10 Dec 2025 20:38:09 -0600</pubDate>
-      
-      <guid>http://localhost:1313/categories/offensive-security/</guid>
+      <guid>https://mcculley.tech/categories/offensive-security/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Assembly</title>
-      <link>http://localhost:1313/categories/assembly/</link>
+      <link>https://mcculley.tech/categories/assembly/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
-      
-      <guid>http://localhost:1313/categories/assembly/</guid>
+      <guid>https://mcculley.tech/categories/assembly/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Programming</title>
-      <link>http://localhost:1313/categories/programming/</link>
+      <link>https://mcculley.tech/categories/programming/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
-      
-      <guid>http://localhost:1313/categories/programming/</guid>
+      <guid>https://mcculley.tech/categories/programming/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Reverse-Engineering</title>
-      <link>http://localhost:1313/categories/reverse-engineering/</link>
+      <link>https://mcculley.tech/categories/reverse-engineering/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
-      
-      <guid>http://localhost:1313/categories/reverse-engineering/</guid>
+      <guid>https://mcculley.tech/categories/reverse-engineering/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Certifications</title>
-      <link>http://localhost:1313/categories/certifications/</link>
+      <link>https://mcculley.tech/categories/certifications/</link>
       <pubDate>Fri, 21 Mar 2025 21:13:47 -0500</pubDate>
-      
-      <guid>http://localhost:1313/categories/certifications/</guid>
+      <guid>https://mcculley.tech/categories/certifications/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Penetration-Testing</title>
-      <link>http://localhost:1313/categories/penetration-testing/</link>
+      <link>https://mcculley.tech/categories/penetration-testing/</link>
       <pubDate>Fri, 21 Mar 2025 21:13:47 -0500</pubDate>
-      
-      <guid>http://localhost:1313/categories/penetration-testing/</guid>
+      <guid>https://mcculley.tech/categories/penetration-testing/</guid>
       <description></description>
       <content></content>
     </item>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Offensive-Security on </title>
+    <link>https://mcculley.tech/tags/offensive-security/</link>
+    <description>Recent content in Offensive-Security on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Mar 2026 12:44:20 -0500</lastBuildDate><atom:link href="https://mcculley.tech/tags/offensive-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ai</title>
+      <link>https://mcculley.tech/posts/ai/</link>
+      <pubDate>Wed, 11 Mar 2026 12:44:20 -0500</pubDate>
+      <guid>https://mcculley.tech/posts/ai/</guid>
+      <description>&lt;p&gt;Early last year the word &amp;lsquo;agentic&amp;rsquo; started to get thrown around a lot in regards to AI without much to show for it for much of the year. So much so that I started to dismiss it as a corporate buzzword, relegated to the likes of AI generated LinkedIn posts and scam online universities that want to make a quick buck.&lt;/p&gt;
+&lt;p&gt;All of that changed in the last month. I dropped into my GOAD range, wrote a couple of skills files, made my CLAUDE.md to help do some hand holding and let it rip. A few approvals of some shell commands and BOOM! A decent little enumeration of an Active Directory domain with legitimate next steps suggested and findings recorded and remediation advice given.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Early last year the word &amp;lsquo;agentic&amp;rsquo; started to get thrown around a lot in regards to AI without much to show for it for much of the year. So much so that I started to dismiss it as a corporate buzzword, relegated to the likes of AI generated LinkedIn posts and scam online universities that want to make a quick buck.&lt;/p&gt;
+&lt;p&gt;All of that changed in the last month. I dropped into my GOAD range, wrote a couple of skills files, made my CLAUDE.md to help do some hand holding and let it rip. A few approvals of some shell commands and BOOM! A decent little enumeration of an Active Directory domain with legitimate next steps suggested and findings recorded and remediation advice given.&lt;/p&gt;
+&lt;p&gt;The realization was a shock to the system. All of the commands and TTPs that I&amp;rsquo;d been studying for years and slaving away to understand how they work - now at my fingertips and executed exactly as specified in natural language. From excitement at the possibilities, to panicking to learn how it all works, to existential career woes, to a more realistic and levelheadedness about the tools moving forward, it&amp;rsquo;s been an absolute rollercoaster ride. It&amp;rsquo;s worth saying that buying a Claude Max license doesn&amp;rsquo;t automatically make someone a hacker, but it does make them more dangerous, all for $100/month. And while Blue teams have the ability to automate, contextualize and move quicker than ever before - I think threat actors still have a massive upper hand. Defenders still need to catch everything that threat actors are throwing at them, and with agents they just got a ton more ammunition. Not only that but the sheer amount of bureaucracy and budget constraints that Blue teams have to deal with to implement the technology and to respond when it triggers alerts gives attackers the upper hand.&lt;/p&gt;
+&lt;p&gt;And my job is to emulate attackers, so I&amp;rsquo;m adapting my workflows to include AI. Not only in my professional career but in my homelab to understand better how agents operate. A part of me hates it. A part of me wishes that this wasn&amp;rsquo;t the trend of technology, but I can&amp;rsquo;t change that and adaptation is necessary for career survival. And to add to the split mindedness I have there&amp;rsquo;s another part of me that&amp;rsquo;s starting to get excited about the technology. I&amp;rsquo;ve been successfully utilizing AI in various capacities over the past couple of weeks and it&amp;rsquo;s allowed me to implement some long outstanding items on my todo list for my homelab and streamline a few workflows in my job.&lt;/p&gt;
+&lt;p&gt;Perhaps my fears of AI being the next cotton gin are unfounded and entirely made up in my own mind. Maybe companies won&amp;rsquo;t expect employees to do more and cause burnout at exponentially increasing rates due to unrealistic expectations. Only time will tell.&lt;/p&gt;
+&lt;p&gt;I plan on still doing some things the old fashioned way. Just a terminal and a web page with docs open to whatever it is I&amp;rsquo;m working on and some music playing in the background. The struggle is still how we learn as humans and the fundamentals are more important now than ever.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

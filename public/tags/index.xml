@@ -2,117 +2,124 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on </title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://mcculley.tech/tags/</link>
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 10 Dec 2025 20:38:09 -0600</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Mar 2026 12:44:20 -0500</lastBuildDate><atom:link href="https://mcculley.tech/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ai</title>
+      <link>https://mcculley.tech/tags/ai/</link>
+      <pubDate>Wed, 11 Mar 2026 12:44:20 -0500</pubDate>
+      <guid>https://mcculley.tech/tags/ai/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
     <item>
       <title>Cybersecurity</title>
-      <link>http://localhost:1313/tags/cybersecurity/</link>
-      <pubDate>Wed, 10 Dec 2025 20:38:09 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/cybersecurity/</guid>
+      <link>https://mcculley.tech/tags/cybersecurity/</link>
+      <pubDate>Wed, 11 Mar 2026 12:44:20 -0500</pubDate>
+      <guid>https://mcculley.tech/tags/cybersecurity/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Offensive-Security</title>
+      <link>https://mcculley.tech/tags/offensive-security/</link>
+      <pubDate>Wed, 11 Mar 2026 12:44:20 -0500</pubDate>
+      <guid>https://mcculley.tech/tags/offensive-security/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Ludus</title>
-      <link>http://localhost:1313/tags/ludus/</link>
+      <link>https://mcculley.tech/tags/ludus/</link>
       <pubDate>Wed, 10 Dec 2025 20:38:09 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/ludus/</guid>
+      <guid>https://mcculley.tech/tags/ludus/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>http://localhost:1313/tags/linux/</link>
+      <link>https://mcculley.tech/tags/linux/</link>
       <pubDate>Mon, 08 Dec 2025 13:25:31 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/linux/</guid>
+      <guid>https://mcculley.tech/tags/linux/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Os</title>
-      <link>http://localhost:1313/tags/os/</link>
+      <link>https://mcculley.tech/tags/os/</link>
       <pubDate>Mon, 08 Dec 2025 13:25:31 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/os/</guid>
+      <guid>https://mcculley.tech/tags/os/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Workstation</title>
-      <link>http://localhost:1313/tags/workstation/</link>
+      <link>https://mcculley.tech/tags/workstation/</link>
       <pubDate>Mon, 08 Dec 2025 13:25:31 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/workstation/</guid>
+      <guid>https://mcculley.tech/tags/workstation/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Hackerspace</title>
-      <link>http://localhost:1313/tags/hackerspace/</link>
+      <link>https://mcculley.tech/tags/hackerspace/</link>
       <pubDate>Wed, 19 Nov 2025 13:24:08 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/hackerspace/</guid>
+      <guid>https://mcculley.tech/tags/hackerspace/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Infrastructure</title>
-      <link>http://localhost:1313/tags/infrastructure/</link>
+      <link>https://mcculley.tech/tags/infrastructure/</link>
       <pubDate>Wed, 19 Nov 2025 13:24:08 -0600</pubDate>
-      
-      <guid>http://localhost:1313/tags/infrastructure/</guid>
+      <guid>https://mcculley.tech/tags/infrastructure/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Assembly</title>
-      <link>http://localhost:1313/tags/assembly/</link>
+      <link>https://mcculley.tech/tags/assembly/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
-      
-      <guid>http://localhost:1313/tags/assembly/</guid>
+      <guid>https://mcculley.tech/tags/assembly/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Tcm</title>
-      <link>http://localhost:1313/tags/tcm/</link>
+      <link>https://mcculley.tech/tags/tcm/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
-      
-      <guid>http://localhost:1313/tags/tcm/</guid>
+      <guid>https://mcculley.tech/tags/tcm/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Training</title>
-      <link>http://localhost:1313/tags/training/</link>
+      <link>https://mcculley.tech/tags/training/</link>
       <pubDate>Fri, 21 Mar 2025 21:21:54 -0500</pubDate>
-      
-      <guid>http://localhost:1313/tags/training/</guid>
+      <guid>https://mcculley.tech/tags/training/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Pjpt</title>
-      <link>http://localhost:1313/tags/pjpt/</link>
+      <link>https://mcculley.tech/tags/pjpt/</link>
       <pubDate>Fri, 21 Mar 2025 21:13:47 -0500</pubDate>
-      
-      <guid>http://localhost:1313/tags/pjpt/</guid>
+      <guid>https://mcculley.tech/tags/pjpt/</guid>
       <description></description>
       <content></content>
     </item>

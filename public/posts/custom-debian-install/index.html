@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   
     <title>custom debian installation :: </title>
   
@@ -11,7 +11,7 @@
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="http://localhost:1313/posts/custom-debian-install/" />
+<link rel="canonical" href="https://mcculley.tech/posts/custom-debian-install/" />
 
 
 
@@ -24,7 +24,7 @@
   
   
   
-  <link rel="stylesheet" href="http://localhost:1313/styles.css">
+  <link rel="stylesheet" href="https://mcculley.tech/styles.css">
 
 
 
@@ -32,8 +32,8 @@
 
 
 
-  <link rel="shortcut icon" href="http://localhost:1313/img/theme-colors/red.png">
-  <link rel="apple-touch-icon" href="http://localhost:1313/img/theme-colors/red.png">
+  <link rel="shortcut icon" href="https://mcculley.tech/img/theme-colors/red.png">
+  <link rel="apple-touch-icon" href="https://mcculley.tech/img/theme-colors/red.png">
 
 
 
@@ -50,12 +50,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="custom debian installation">
 <meta property="og:description" content="Customizing old faithful" />
-<meta property="og:url" content="http://localhost:1313/posts/custom-debian-install/" />
+<meta property="og:url" content="https://mcculley.tech/posts/custom-debian-install/" />
 <meta property="og:site_name" content="" />
 
   
   
-  <meta property="og:image" content="http://localhost:1313/img/Debian.jpg">
+  <meta property="og:image" content="https://mcculley.tech/img/Debian.jpg">
 
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -71,7 +71,19 @@
 
 
 
+<style>
+.ai-disclaimer {
+  border: 2px solid var(--accent);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  font-size: 0.9rem;
+}
 
+.ai-disclaimer p {
+  margin: 0;
+}
+</style>
 
 
 
@@ -145,7 +157,7 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="http://localhost:1313/posts/custom-debian-install/">custom debian installation</a>
+    <a href="https://mcculley.tech/posts/custom-debian-install/">custom debian installation</a>
   </h1>
   <div class="post-meta"><time class="post-date">2025-12-08</time><span class="post-author">alex mcculley</span>
     
@@ -154,17 +166,17 @@
   
     <span class="post-tags">
       
-      #<a href="http://localhost:1313/tags/os/">os</a>&nbsp;
+      #<a href="https://mcculley.tech/tags/os/">os</a>&nbsp;
       
-      #<a href="http://localhost:1313/tags/linux/">linux</a>&nbsp;
+      #<a href="https://mcculley.tech/tags/linux/">linux</a>&nbsp;
       
-      #<a href="http://localhost:1313/tags/workstation/">workstation</a>&nbsp;
+      #<a href="https://mcculley.tech/tags/workstation/">workstation</a>&nbsp;
       
     </span>
   
   
     
-    <img src="http://localhost:1313/img/Debian.jpg"
+    <img src="https://mcculley.tech/img/Debian.jpg"
       class="post-cover"
       alt=" "
       title="Cover Image" />
@@ -225,20 +237,20 @@ It should be noted that this is my preferred installation for a desktop installa
 <h3 id="enter-the-shell">enter the shell<a href="#enter-the-shell" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
 <p>Now we move into a console by hitting <code>Ctrl+Fn+Alt F2</code>. This will dump us into a busybox shell. We can see where things are mounted with <code>df -h</code>. We can see that currently our btrfs partition is mounted at <code>/target</code>. However, this is actually the root subvol mounted. We need to unmount <code>/target</code>, <code>/target/boot</code>, and <code>/target/boot/efi</code> to continue.</p>
 <p><img src="/posts/custom-debian-install/initial-disk-busybox.png" alt="init-disk-busybox"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>umount /target/boot/efi
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>umount /target/boot/efi
 </span></span><span style="display:flex;"><span>umount /target/boot
 </span></span><span style="display:flex;"><span>umount /target
 </span></span></code></pre></div><p>Now we mount the unlocked luks container partition with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>mount /dev/mapper/sda3_crypt /target
 </span></span><span style="display:flex;"><span>cd /target
 </span></span></code></pre></div><p>We can see the root subvol given the name <code>@rootfs</code>. We&rsquo;ll just change that to <code>@</code> and create our new subvols:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv @rootfs @
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv @rootfs @
 </span></span><span style="display:flex;"><span>btrfs subvol create @home
 </span></span><span style="display:flex;"><span>btrfs subvol create @snapshots
 </span></span><span style="display:flex;"><span>btrfs subvol create @var_log
 </span></span></code></pre></div><p>With our subvols created, we can remount our root subvol, create proper directories to mount the additional subvols, and remount our boot and efi partitions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>umount /target
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>umount /target
 </span></span><span style="display:flex;"><span>mount -o noatime,space_cache<span style="color:#f92672">=</span>v2,compress<span style="color:#f92672">=</span>zstd,ssd,discard<span style="color:#f92672">=</span>async,subvol<span style="color:#f92672">=</span>@ /dev/mapper/sda3_crypt /target
 </span></span><span style="display:flex;"><span>mkdir -p /target/home /target/var/log /target/snapshots
 </span></span><span style="display:flex;"><span>mount -o noatime,space_cache<span style="color:#f92672">=</span>v2,compress<span style="color:#f92672">=</span>zstd,ssd,discard<span style="color:#f92672">=</span>async,subvol<span style="color:#f92672">=</span>@home /dev/mapper/sda3_crypt /target/home
@@ -264,6 +276,8 @@ It should be noted that this is my preferred installation for a desktop installa
       </div></div>
 
   
+
+  
     
 <div class="pagination">
     <div class="pagination__title">
@@ -273,7 +287,7 @@ It should be noted that this is my preferred installation for a desktop installa
     <div class="pagination__buttons">
         
         <span class="button previous">
-            <a href="http://localhost:1313/posts/ludus/">
+            <a href="https://mcculley.tech/posts/ludus/">
                 <span class="button__icon">←</span>
                 <span class="button__text">ludus</span>
             </a>
@@ -281,7 +295,7 @@ It should be noted that this is my preferred installation for a desktop installa
         
         
         <span class="button next">
-            <a href="http://localhost:1313/posts/intro_to_hackerspace/intro_to_hackerspace/">
+            <a href="https://mcculley.tech/posts/intro_to_hackerspace/intro_to_hackerspace/">
                 <span class="button__text">the sodak hackerspace</span>
                 <span class="button__icon">→</span>
             </a>

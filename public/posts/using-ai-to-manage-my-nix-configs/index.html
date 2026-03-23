@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>using ai to manage my nix configs :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Using CLAUDE.md to wrangle AI into following my NixOS configuration schema" />
+<meta name="keywords" content="ai, nix, nixos, claude" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/" />
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://mcculley.tech/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://mcculley.tech/img/theme-colors/red.png">
+  <link rel="apple-touch-icon" href="https://mcculley.tech/img/theme-colors/red.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="alex mcculley" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="using ai to manage my nix configs">
+<meta property="og:description" content="Using CLAUDE.md to wrangle AI into following my NixOS configuration schema" />
+<meta property="og:url" content="https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/" />
+<meta property="og:site_name" content="" />
+
+  
+  
+  <meta property="og:image" content="https://mcculley.tech/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-03-23 00:00:00 -0500 CDT" />
+
+
+
+
+
+
+
+
+
+<style>
+.ai-disclaimer {
+  border: 2px solid var(--accent);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  font-size: 0.9rem;
+}
+
+.ai-disclaimer p {
+  margin: 0;
+}
+</style>
+
+
+
+  
+
+
+</head>
+<body class="red">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    mcculleytech
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">about</a></li>
+        
+      
+        
+          <li><a href="https://sodakhacker.space">hackerspace</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+      
+        
+          <li><a href="/about" >about</a></li>
+        
+      
+        
+          <li><a href="https://sodakhacker.space" >hackerspace</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/">using ai to manage my nix configs</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-03-23</time><span class="post-author">alex mcculley</span>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://mcculley.tech/tags/ai/">ai</a>&nbsp;
+      
+      #<a href="https://mcculley.tech/tags/nix/">nix</a>&nbsp;
+      
+      #<a href="https://mcculley.tech/tags/homelab/">homelab</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+
+  
+    <div class="table-of-contents">
+      <h2>
+        Table of Contents
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">overview</a></li>
+    <li><a href="#the-solution">the solution</a></li>
+    <li><a href="#claude-in-action">claude in action</a>
+      <ul>
+        <li><a href="#the-reality">the reality</a></li>
+      </ul>
+    </li>
+    <li><a href="#closing-thoughts">closing thoughts</a></li>
+  </ul>
+</nav>
+    </div>
+  
+
+  <div class="post-content"><div>
+        <p><strong>Repository Link: <a href="https://github.com/mcculleytech/nixos-config">https://github.com/mcculleytech/nixos-config</a></strong></p>
+<h2 id="overview">overview<a href="#overview" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>My homelab is 90% NixOS and all the configuration is available on GitHub. I&rsquo;ve structured the service configurations in such a way that I can just toggle them on and off in the main host configuration file. Each service config includes a toggle and the additional configuration to apply if said toggle is enabled. I like this configuration and while it&rsquo;s not fully implemented in my repo (with Claude&rsquo;s help it will be soon), it&rsquo;s the structure I want to roll with moving forward with any new service.</p>
+<p>The only problem is that Claude may or may not produce this format when I instruct it to deploy a new service or I might have to specify it every time in order to get consistent results. Enter CLAUDE.md.</p>
+<h2 id="the-solution">the solution<a href="#the-solution" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The CLAUDE.md file allows us to give more context surrounding our project. We can specify tests to run, integrations that need to be implemented, and in our instance specify conventions that our project follows. I can tell claude via the CLAUDE.md file to utilize a template located at <code>templates/services.nix</code> to deploy new services and to place it in a specific location.</p>
+<pre tabindex="0"><code>...
+
+## new deployments
+- For new service deployments, utilize the file `service.nix` as a template. By default place the new service under `optional` subdirectory for servers unless the configuration appears to be more desktop related in which case verify with the user on location. Reference the nix documentation for the specific service at `https://search.nixos.org/options?channel=25.11&amp;query=&lt;service&gt;` and ensure all the necessary options are set for the service to run properly and are network accessible over the LAN (and tailscale) as well as via a reverse proxy (traefik). Once you have a configuration planned, present it to the user for approval before writing the file.
+- Once you have the service file written, add the file to the `imports` section into the `default.nix` file for the `optional` subdirectory and enable the service on the host specified in prompt. If no host is given, prompt the user.
+- Make an entry in the traefik `dynamic-config.nix` file. Creating entries for both `router` and `service` entries.
+- Make a dns entry for the new service in the `blocky.nix` configuration file.
+- Make an entry in the `homepage-dashboard.nix` file for the newly created service under the section that makes most sense. Verify with user before writing and provide reasoning.
+- When adding persistence directories for services, use the attrset form (`{ directory = &#34;...&#34;; user = &#34;...&#34;; group = &#34;...&#34;; }`) with the service&#39;s user/group to ensure correct ownership on impermanence bind mounts.
+
+## impermanence
+- All hosts use impermanence with a blank root btrfs subvol snapshot. Persistent state lives under `/persist`.
+- When a service requires subdirectories inside its state directory (e.g., `/var/lib/foo/data`), impermanence will bind-mount the parent directory but won&#39;t create subdirectories. If the service&#39;s pre-start script expects them to exist, it will fail.
+- Fix this by adding `systemd.tmpfiles.rules` to create the required subdirectories before the service starts, e.g.: `&#34;d /var/lib/foo/data 0755 foo foo -&#34;`.
+- Always check a new service&#39;s logs after first deploy — a crash loop with &#34;directory does not exist&#34; errors is a sign of this issue.
+...
+</code></pre><p>You can see that I provide it a detailed explanation about writing the new service, where to find options on configuration, integrating it in my traefik config, and how to make a nice entry under my homepage-dashboard instance. I also give it instructions for issues with impermanence and configurations. By using this method we can ensure that our particular Nix code schema is more likely to be followed and stay in line with other pre-configured services. Our CLAUDE.md file isn&rsquo;t just context for the agent to use, it&rsquo;s guardrails against configuration drift introduced by AI deciding it wants to take matters into its own hands.</p>
+<h2 id="claude-in-action">claude in action<a href="#claude-in-action" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>It also gives us a superpower. We can now (in theory) deploy system services in one line of natural language. To test this I decided to deploy smokeping in my network. All I typed was &ldquo;Let&rsquo;s deploy smokeping on atreides.&rdquo; and claude got to work developing a plan and asking questions when needed:</p>
+<p><img src="/posts/using-ai-to-manage-my-nix-configs/claude-plan.png" alt="Claude developing a plan for smokeping deployment"></p>
+<p>And after 2min and 4sec, we get an initial config and an edited blocky and traefik config ready to deploy:</p>
+<p><img src="/posts/using-ai-to-manage-my-nix-configs/claude-config-output.png" alt="Claude output with configs ready to deploy"></p>
+<h3 id="the-reality">the reality<a href="#the-reality" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>But after a quick rebuild, we get hit with a 403 from our smokeping instance:</p>
+<p><img src="/posts/using-ai-to-manage-my-nix-configs/smokeping-403.png" alt="Smokeping returning a 403 error"></p>
+<p>It took another minute or two and a quick redeploy to get it working. Not quite a one-shot. Part of it was my own setup with impermanence and the directory being created but not set quite right. All in all about a 5min process. Still a substantially shorter amount of time than what it would take me manually. It also input my email into the configuration which I had it remove. A good reminder to review before you push the commit. Here&rsquo;s the working final product:</p>
+<p><img src="/posts/using-ai-to-manage-my-nix-configs/smokeping-working.png" alt="Smokeping working in the browser"></p>
+<p>And here&rsquo;s the final smokeping configuration, and as you can tell it matches other services in our repository!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>{ config<span style="color:#f92672">,</span> lib<span style="color:#f92672">,</span> <span style="color:#f92672">...</span> }:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span>
+</span></span><span style="display:flex;"><span>  tr_secrets <span style="color:#f92672">=</span> builtins<span style="color:#f92672">.</span>fromJSON (builtins<span style="color:#f92672">.</span>readFile <span style="color:#e6db74">../../../../../secrets/git_crypt_traefik.json</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  options <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    smokeping<span style="color:#f92672">.</span>enable <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      lib<span style="color:#f92672">.</span>mkEnableOption <span style="color:#e6db74">&#34;enables SmokePing network latency monitor&#34;</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  config <span style="color:#f92672">=</span> lib<span style="color:#f92672">.</span>mkIf config<span style="color:#f92672">.</span>smokeping<span style="color:#f92672">.</span>enable {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    services<span style="color:#f92672">.</span>smokeping <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>;
+</span></span><span style="display:flex;"><span>      hostName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;smokeping.</span><span style="color:#e6db74">${</span>tr_secrets<span style="color:#f92672">.</span>traefik<span style="color:#f92672">.</span>homelab_domain<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>      owner <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;alex&#34;</span>;
+</span></span><span style="display:flex;"><span>      webService <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      targetConfig <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        probe = FPing
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        menu = Top
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        title = Network Latency Monitoring
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        + NixOS
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        menu = NixOS Hosts
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        title = NixOS Hosts
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        ++ atreides
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        menu = atreides
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        title = atreides (10.1.8.129)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        host = 10.1.8.129
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        ...
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;SNIP&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">		...
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># smokeping uses nginx for web interface; override listen port and serverName for traefik</span>
+</span></span><span style="display:flex;"><span>    services<span style="color:#f92672">.</span>nginx<span style="color:#f92672">.</span>virtualHosts<span style="color:#f92672">.</span>smokeping <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      serverName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;_&#34;</span>;
+</span></span><span style="display:flex;"><span>      listen <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        { addr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>; port <span style="color:#f92672">=</span> <span style="color:#ae81ff">8090</span>; }
+</span></span><span style="display:flex;"><span>      ];
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    networking<span style="color:#f92672">.</span>firewall<span style="color:#f92672">.</span>allowedTCPPorts <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">8090</span> ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    systemd<span style="color:#f92672">.</span>tmpfiles<span style="color:#f92672">.</span>rules <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;d /var/lib/smokeping/data 0755 smokeping smokeping -&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;d /var/lib/smokeping/cache 0755 smokeping smokeping -&#34;</span>
+</span></span><span style="display:flex;"><span>    ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    environment<span style="color:#f92672">.</span>persistence <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;/persist&#34;</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        hideMounts <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        directories <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>          { directory <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/var/lib/smokeping&#34;</span>; user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;smokeping&#34;</span>; group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;smokeping&#34;</span>; }
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="closing-thoughts">closing thoughts<a href="#closing-thoughts" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Working with my Nix configuration utilizing claude code taught me an important lesson. The way to combat the indeterminate nature of AI is to provide specificity and if possible templates for it to fill in data. The code itself is always only half the battle, the architecture and the decision making behind the code is the other half. Without a guiding hand we risk <a href="https://embracethered.com/blog/posts/2025/the-normalization-of-deviance-in-ai/">the normalization of deviance in AI</a>.</p>
+<p>With that being said there&rsquo;s a beautiful irony to using something as indeterminate as AI to manage something as rigidly determinate as Nix configs. There&rsquo;s a push and a pull kind of vibe to it. A natural asymmetry that feels right.</p>
+<p>It&rsquo;s funny, this repository has been around for years and represents hours of manual work and research before AI was a viable collaborator. I was hesitant to let it touch my project because it was mine. And while it&rsquo;s still a little weird to have AI making meaningful commits, I feel better having made the template and wrestling the AI to follow my lead.</p>
+
+      </div></div>
+
+  
+    <aside class="ai-disclaimer">
+  <p><strong>AI Disclosure:</strong> This article was written by a human. AI tools were used for editing clarity and grammar — not for generating content.</p>
+</aside>
+
+  
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://mcculley.tech/posts/ai/">
+                <span class="button__text">ai</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>2025</span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

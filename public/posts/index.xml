@@ -6,7 +6,120 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Mar 2026 12:44:20 -0500</lastBuildDate><atom:link href="https://mcculley.tech/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 -0500</lastBuildDate><atom:link href="https://mcculley.tech/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>using ai to manage my nix configs</title>
+      <link>https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 -0500</pubDate>
+      <guid>https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Repository Link: &lt;a href=&#34;https://github.com/mcculleytech/nixos-config&#34;&gt;https://github.com/mcculleytech/nixos-config&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;overview&lt;/h2&gt;
+&lt;p&gt;My homelab is 90% NixOS and all the configuration is available on GitHub. I&amp;rsquo;ve structured the service configurations in such a way that I can just toggle them on and off in the main host configuration file. Each service config includes a toggle and the additional configuration to apply if said toggle is enabled. I like this configuration and while it&amp;rsquo;s not fully implemented in my repo (with Claude&amp;rsquo;s help it will be soon), it&amp;rsquo;s the structure I want to roll with moving forward with any new service.&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Repository Link: &lt;a href=&#34;https://github.com/mcculleytech/nixos-config&#34;&gt;https://github.com/mcculleytech/nixos-config&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;overview&lt;/h2&gt;
+&lt;p&gt;My homelab is 90% NixOS and all the configuration is available on GitHub. I&amp;rsquo;ve structured the service configurations in such a way that I can just toggle them on and off in the main host configuration file. Each service config includes a toggle and the additional configuration to apply if said toggle is enabled. I like this configuration and while it&amp;rsquo;s not fully implemented in my repo (with Claude&amp;rsquo;s help it will be soon), it&amp;rsquo;s the structure I want to roll with moving forward with any new service.&lt;/p&gt;
+&lt;p&gt;The only problem is that Claude may or may not produce this format when I instruct it to deploy a new service or I might have to specify it every time in order to get consistent results. Enter CLAUDE.md.&lt;/p&gt;
+&lt;h2 id=&#34;the-solution&#34;&gt;the solution&lt;/h2&gt;
+&lt;p&gt;The CLAUDE.md file allows us to give more context surrounding our project. We can specify tests to run, integrations that need to be implemented, and in our instance specify conventions that our project follows. I can tell claude via the CLAUDE.md file to utilize a template located at &lt;code&gt;templates/services.nix&lt;/code&gt; to deploy new services and to place it in a specific location.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;...
+
+## new deployments
+- For new service deployments, utilize the file `service.nix` as a template. By default place the new service under `optional` subdirectory for servers unless the configuration appears to be more desktop related in which case verify with the user on location. Reference the nix documentation for the specific service at `https://search.nixos.org/options?channel=25.11&amp;amp;query=&amp;lt;service&amp;gt;` and ensure all the necessary options are set for the service to run properly and are network accessible over the LAN (and tailscale) as well as via a reverse proxy (traefik). Once you have a configuration planned, present it to the user for approval before writing the file.
+- Once you have the service file written, add the file to the `imports` section into the `default.nix` file for the `optional` subdirectory and enable the service on the host specified in prompt. If no host is given, prompt the user.
+- Make an entry in the traefik `dynamic-config.nix` file. Creating entries for both `router` and `service` entries.
+- Make a dns entry for the new service in the `blocky.nix` configuration file.
+- Make an entry in the `homepage-dashboard.nix` file for the newly created service under the section that makes most sense. Verify with user before writing and provide reasoning.
+- When adding persistence directories for services, use the attrset form (`{ directory = &amp;#34;...&amp;#34;; user = &amp;#34;...&amp;#34;; group = &amp;#34;...&amp;#34;; }`) with the service&amp;#39;s user/group to ensure correct ownership on impermanence bind mounts.
+
+## impermanence
+- All hosts use impermanence with a blank root btrfs subvol snapshot. Persistent state lives under `/persist`.
+- When a service requires subdirectories inside its state directory (e.g., `/var/lib/foo/data`), impermanence will bind-mount the parent directory but won&amp;#39;t create subdirectories. If the service&amp;#39;s pre-start script expects them to exist, it will fail.
+- Fix this by adding `systemd.tmpfiles.rules` to create the required subdirectories before the service starts, e.g.: `&amp;#34;d /var/lib/foo/data 0755 foo foo -&amp;#34;`.
+- Always check a new service&amp;#39;s logs after first deploy — a crash loop with &amp;#34;directory does not exist&amp;#34; errors is a sign of this issue.
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can see that I provide it a detailed explanation about writing the new service, where to find options on configuration, integrating it in my traefik config, and how to make a nice entry under my homepage-dashboard instance. I also give it instructions for issues with impermanence and configurations. By using this method we can ensure that our particular Nix code schema is more likely to be followed and stay in line with other pre-configured services. Our CLAUDE.md file isn&amp;rsquo;t just context for the agent to use, it&amp;rsquo;s guardrails against configuration drift introduced by AI deciding it wants to take matters into its own hands.&lt;/p&gt;
+&lt;h2 id=&#34;claude-in-action&#34;&gt;claude in action&lt;/h2&gt;
+&lt;p&gt;It also gives us a superpower. We can now (in theory) deploy system services in one line of natural language. To test this I decided to deploy smokeping in my network. All I typed was &amp;ldquo;Let&amp;rsquo;s deploy smokeping on atreides.&amp;rdquo; and claude got to work developing a plan and asking questions when needed:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/claude-plan.png&#34; alt=&#34;Claude developing a plan for smokeping deployment&#34;&gt;&lt;/p&gt;
+&lt;p&gt;And after 2min and 4sec, we get an initial config and an edited blocky and traefik config ready to deploy:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/claude-config-output.png&#34; alt=&#34;Claude output with configs ready to deploy&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;the-reality&#34;&gt;the reality&lt;/h3&gt;
+&lt;p&gt;But after a quick rebuild, we get hit with a 403 from our smokeping instance:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/smokeping-403.png&#34; alt=&#34;Smokeping returning a 403 error&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It took another minute or two and a quick redeploy to get it working. Not quite a one-shot. Part of it was my own setup with impermanence and the directory being created but not set quite right. All in all about a 5min process. Still a substantially shorter amount of time than what it would take me manually. It also input my email into the configuration which I had it remove. A good reminder to review before you push the commit. Here&amp;rsquo;s the working final product:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/smokeping-working.png&#34; alt=&#34;Smokeping working in the browser&#34;&gt;&lt;/p&gt;
+&lt;p&gt;And here&amp;rsquo;s the final smokeping configuration, and as you can tell it matches other services in our repository!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-nix&#34; data-lang=&#34;nix&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{ config&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; lib&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt; }:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  tr_secrets &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; builtins&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fromJSON (builtins&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;readFile &lt;span style=&#34;color:#e6db74&#34;&gt;../../../../../secrets/git_crypt_traefik.json&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  options &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    smokeping&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      lib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mkEnableOption &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;enables SmokePing network latency monitor&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mkIf config&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;smokeping&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;enable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    services&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;smokeping &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      enable &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      host &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      hostName &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smokeping.&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;tr_secrets&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;traefik&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;homelab_domain&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      owner &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;alex&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      webService &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      targetConfig &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        probe = FPing
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        menu = Top
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        title = Network Latency Monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        + NixOS
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        menu = NixOS Hosts
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        title = NixOS Hosts
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        ++ atreides
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        menu = atreides
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        title = atreides (10.1.8.129)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        host = 10.1.8.129
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        ...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;lt;SNIP&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;      &amp;#39;&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# smokeping uses nginx for web interface; override listen port and serverName for traefik&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    services&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nginx&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;virtualHosts&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;smokeping &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      serverName &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;_&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      listen &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        { addr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;; port &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8090&lt;/span&gt;; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      ];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    networking&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;firewall&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;allowedTCPPorts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [ &lt;span style=&#34;color:#ae81ff&#34;&gt;8090&lt;/span&gt; ];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    systemd&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tmpfiles&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;rules &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;d /var/lib/smokeping/data 0755 smokeping smokeping -&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;d /var/lib/smokeping/cache 0755 smokeping smokeping -&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    environment&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;persistence &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/persist&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        hideMounts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        directories &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          { directory &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/var/lib/smokeping&amp;#34;&lt;/span&gt;; user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smokeping&amp;#34;&lt;/span&gt;; group &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smokeping&amp;#34;&lt;/span&gt;; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;closing-thoughts&#34;&gt;closing thoughts&lt;/h2&gt;
+&lt;p&gt;Working with my Nix configuration utilizing claude code taught me an important lesson. The way to combat the indeterminate nature of AI is to provide specificity and if possible templates for it to fill in data. The code itself is always only half the battle, the architecture and the decision making behind the code is the other half. Without a guiding hand we risk &lt;a href=&#34;https://embracethered.com/blog/posts/2025/the-normalization-of-deviance-in-ai/&#34;&gt;the normalization of deviance in AI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With that being said there&amp;rsquo;s a beautiful irony to using something as indeterminate as AI to manage something as rigidly determinate as Nix configs. There&amp;rsquo;s a push and a pull kind of vibe to it. A natural asymmetry that feels right.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s funny, this repository has been around for years and represents hours of manual work and research before AI was a viable collaborator. I was hesitant to let it touch my project because it was mine. And while it&amp;rsquo;s still a little weird to have AI making meaningful commits, I feel better having made the template and wrestling the AI to follow my lead.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>ai</title>
       <link>https://mcculley.tech/posts/ai/</link>

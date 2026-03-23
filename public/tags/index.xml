@@ -6,12 +6,30 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Mar 2026 12:44:20 -0500</lastBuildDate><atom:link href="https://mcculley.tech/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 -0500</lastBuildDate><atom:link href="https://mcculley.tech/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ai</title>
       <link>https://mcculley.tech/tags/ai/</link>
-      <pubDate>Wed, 11 Mar 2026 12:44:20 -0500</pubDate>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 -0500</pubDate>
       <guid>https://mcculley.tech/tags/ai/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Homelab</title>
+      <link>https://mcculley.tech/tags/homelab/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 -0500</pubDate>
+      <guid>https://mcculley.tech/tags/homelab/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Nix</title>
+      <link>https://mcculley.tech/tags/nix/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 -0500</pubDate>
+      <guid>https://mcculley.tech/tags/nix/</guid>
       <description></description>
       <content></content>
     </item>

@@ -3,24 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mcculley.tech/</loc>
-    <lastmod>2026-03-11T12:44:20-05:00</lastmod>
-  </url><url>
-    <loc>https://mcculley.tech/posts/ai/</loc>
-    <lastmod>2026-03-11T12:44:20-05:00</lastmod>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
   </url><url>
     <loc>https://mcculley.tech/tags/ai/</loc>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mcculley.tech/tags/homelab/</loc>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mcculley.tech/tags/nix/</loc>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mcculley.tech/posts/</loc>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mcculley.tech/tags/</loc>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mcculley.tech/posts/using-ai-to-manage-my-nix-configs/</loc>
+    <lastmod>2026-03-23T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mcculley.tech/posts/ai/</loc>
     <lastmod>2026-03-11T12:44:20-05:00</lastmod>
   </url><url>
     <loc>https://mcculley.tech/tags/cybersecurity/</loc>
     <lastmod>2026-03-11T12:44:20-05:00</lastmod>
   </url><url>
     <loc>https://mcculley.tech/tags/offensive-security/</loc>
-    <lastmod>2026-03-11T12:44:20-05:00</lastmod>
-  </url><url>
-    <loc>https://mcculley.tech/posts/</loc>
-    <lastmod>2026-03-11T12:44:20-05:00</lastmod>
-  </url><url>
-    <loc>https://mcculley.tech/tags/</loc>
     <lastmod>2026-03-11T12:44:20-05:00</lastmod>
   </url><url>
     <loc>https://mcculley.tech/categories/</loc>

@@ -5,7 +5,7 @@ title = 'about'
 +++
 
 ## overview
-I've been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I've been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!
+A builder-operator by trade specializing in linux system administration and offensive security. I've been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I've been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!
 
 ## experience
 - Network Penetration Testing

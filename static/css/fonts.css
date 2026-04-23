@@ -1,0 +1,46 @@
+/* 0xProto Nerd Font — brand mono, replaces theme's Fira Code */
+@font-face {
+  font-family: "0xProto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/0xProtoNerdFont-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "0xProto";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/0xProtoNerdFont-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "0xProto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/0xProtoNerdFont-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "0xProto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/0xProtoNerdFontMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "0xProto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/0xProtoNerdFontMono-Bold.ttf") format("truetype");
+}
+
+/* Override theme's Fira Code with 0xProto everywhere */
+body,
+code, kbd,
+pre, pre code,
+.logo__text,
+.menu a,
+.footer {
+  font-family: "0xProto", "0xProto Mono", ui-monospace, Consolas, Monaco, "Ubuntu Mono", monospace !important;
+}

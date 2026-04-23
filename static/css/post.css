@@ -1,0 +1,100 @@
+/* Post title — clean, no dotted border */
+.post-title {
+  color: #ffffff !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.post-title::after {
+  display: none !important;
+}
+
+/* Post covers — clean rounded corners, no thick border */
+.post-cover {
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.post-cover img {
+  border-radius: 8px;
+}
+
+/* Table of contents panel */
+.table-of-contents {
+  background: #0a2a42;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px 24px;
+  margin: 24px 0;
+}
+
+/* Tag pills */
+.post-tags {
+  opacity: 1 !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.post-tags a {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  color: #8fa0b3 !important;
+  text-decoration: none !important;
+  transition: color 120ms cubic-bezier(0.4, 0, 0.2, 1), border-color 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.post-tags a:hover {
+  color: #e63946 !important;
+  border-color: #e63946;
+}
+
+/* AI disclaimer */
+.ai-disclaimer {
+  border: 2px solid var(--accent);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+.ai-disclaimer p {
+  margin: 0;
+}
+
+/* Dial back red — meta, list markers, footnotes should be muted, not accent */
+.post-meta {
+  color: #8fa0b3 !important;
+}
+.post-meta .post-date,
+.post-meta .post-author {
+  color: #8fa0b3 !important;
+}
+.post-meta > *:not(:first-child)::before {
+  color: #556679 !important;
+}
+
+/* Ordered list numbers — muted instead of accent */
+.post ol > li::before {
+  color: #8fa0b3 !important;
+}
+/* Unordered list dashes */
+.post ul li:not(:empty)::before {
+  color: #8fa0b3 !important;
+}
+
+/* Footnotes */
+.footnotes {
+  color: #8fa0b3 !important;
+}
+
+/* Post list titles — white, red only on hover */
+.post-title a {
+  color: #ffffff !important;
+}
+.post-title a:hover {
+  color: #e63946 !important;
+}

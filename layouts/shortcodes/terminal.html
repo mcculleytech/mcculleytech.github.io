@@ -1,0 +1,48 @@
+{{/*
+  Terminal shortcode — renders a CLI block with title bar, colored dots,
+  and color-coded output lines.
+
+  Usage:
+    {{< terminal title="trashpanda@kali ~/engagements" >}}
+    [prompt]root@kali:~/engagements#
+    [cmd]nmap -sC -sV 10.10.10.42
+    [out]Starting Nmap 7.94 ( https://nmap.org )
+    [ok]22/tcp   open  ssh  OpenSSH 9.2
+    [warn]443/tcp  filtered https
+    [err]Connection refused on 8080
+    [prompt]root@kali:~/engagements#
+    {{< /terminal >}}
+
+  Line prefixes: [prompt] [cmd] [out] [ok] [warn] [err]
+  Lines without a prefix render as plain output.
+*/}}
+
+<div class="tp-terminal">
+  <div class="tp-terminal__bar">
+    <span class="tp-terminal__dot tp-terminal__dot--red"></span>
+    <span class="tp-terminal__dot tp-terminal__dot--yellow"></span>
+    <span class="tp-terminal__dot tp-terminal__dot--green"></span>
+    {{ with .Get "title" }}<span class="tp-terminal__title">{{ . }}</span>{{ end }}
+  </div>
+  <div class="tp-terminal__body">
+    {{- $lines := split (trim .Inner "\n") "\n" -}}
+    {{- range $lines -}}
+      {{- $line := trim . " \r" -}}
+      {{- if hasPrefix $line "[prompt]" -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__prompt">{{ replaceRE `^\[prompt\]` "" $line }}</span><span class="tp-terminal__caret">&nbsp;</span></div>
+      {{- else if hasPrefix $line "[cmd]" -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__cmd">{{ replaceRE `^\[cmd\]` "" $line }}</span></div>
+      {{- else if hasPrefix $line "[ok]" -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__ok">{{ replaceRE `^\[ok\]` "" $line }}</span></div>
+      {{- else if hasPrefix $line "[warn]" -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__warn">{{ replaceRE `^\[warn\]` "" $line }}</span></div>
+      {{- else if hasPrefix $line "[err]" -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__err">{{ replaceRE `^\[err\]` "" $line }}</span></div>
+      {{- else if hasPrefix $line "[out]" -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__out">{{ replaceRE `^\[out\]` "" $line }}</span></div>
+      {{- else -}}
+        <div class="tp-terminal__line"><span class="tp-terminal__out">{{ $line }}</span></div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+</div>

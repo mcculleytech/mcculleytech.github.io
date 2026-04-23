@@ -1,0 +1,43 @@
+/* Typewriter cadence — theme uses -0.02em, design system uses +0.06em */
+body {
+  letter-spacing: 0.06em;
+}
+
+/* Blockquote — cyan left border + oversized quote glyph */
+blockquote {
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: 3px solid #57c7ff;
+  margin: 40px 0;
+  padding: 12px 20px;
+  position: relative;
+  color: #8fa0b3;
+}
+blockquote::before {
+  content: "\201C";
+  font-family: Georgia, serif;
+  font-size: 3.875rem;
+  position: absolute;
+  left: -40px;
+  top: -20px;
+  color: #57c7ff;
+}
+blockquote p:first-of-type::before {
+  display: none !important;
+}
+
+/* Heading type scale — proper hierarchy from design system */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3;
+  text-transform: lowercase;
+  color: #ffffff;
+}
+h1 { font-size: 2.625rem; }
+h2 { font-size: 1.625rem; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+@media (max-width: 684px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.15rem; }
+}

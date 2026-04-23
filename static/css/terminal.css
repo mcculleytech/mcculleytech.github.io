@@ -1,0 +1,44 @@
+/* Terminal component */
+.tp-terminal {
+  background: #021528;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 40px 0;
+  font-family: "0xProto Mono", "0xProto", ui-monospace, monospace;
+  font-size: 0.875rem;
+}
+.tp-terminal__bar {
+  background: #0a2a42;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: #8fa0b3;
+}
+.tp-terminal__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.tp-terminal__dot--red    { background: #ff5c57; }
+.tp-terminal__dot--yellow { background: #f3f99d; }
+.tp-terminal__dot--green  { background: #5af78e; }
+.tp-terminal__title { margin-left: 8px; }
+.tp-terminal__body {
+  padding: 14px 16px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+.tp-terminal__prompt { color: #5af78e; }
+.tp-terminal__cmd    { color: #ffffff; }
+.tp-terminal__out    { color: #8fa0b3; }
+.tp-terminal__ok     { color: #5af78e; }
+.tp-terminal__warn   { color: #f3f99d; }
+.tp-terminal__err    { color: #ff5c57; }
+.tp-terminal__caret  {
+  border-right: 2px solid #5af78e;
+  animation: tp-blink 1s step-end infinite;
+}
+@keyframes tp-blink { 50% { border-color: transparent; } }

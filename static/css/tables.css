@@ -1,0 +1,12 @@
+/* Tables — subtler borders, no accent red */
+table, th, td {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-collapse: collapse;
+}
+th {
+  color: #ffffff !important;
+  background: #0a2a42;
+}
+td {
+  color: #e8e8e8;
+}

@@ -1,0 +1,40 @@
+/* Code blocks — solid secondary bg, rounded */
+pre {
+  background: #0a2a42 !important;
+  border: none !important;
+  border-radius: 8px;
+  padding: 20px 20px 20px 24px !important;
+  margin: 40px 0 !important;
+}
+
+/* Kill the theme's code-toolbar outer border */
+.code-toolbar {
+  border: none !important;
+  padding: 0 !important;
+  background: #0a2a42;
+  border-radius: 8px;
+}
+.code-toolbar pre {
+  margin: 0 !important;
+}
+
+/* Override theme's accent-tinted syntax coloring in code blocks */
+code[class*="language-"],
+pre[class*="language-"],
+.token.property,
+.token.function,
+.token.function-name,
+.token.deleted,
+.command-line-prompt > span:before {
+  color: #ccc !important;
+}
+
+/* Inline code — neutral secondary bg instead of accent-tinted */
+code, kbd {
+  background: #0a2a42 !important;
+  color: #e8e8e8 !important;
+  border-radius: 5px;
+}
+pre code {
+  background: none !important;
+}

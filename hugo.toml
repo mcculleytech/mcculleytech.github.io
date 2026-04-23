@@ -15,7 +15,7 @@ theme = "re-terminal"
   themeColor = "red"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
+  showMenuItems = 3
 
   # show selector to switch language
   showLanguageSelector = false
@@ -36,7 +36,7 @@ theme = "re-terminal"
   showLastUpdated = false
 
   # set a custom favicon (default is a `themeColor` square)
-  # favicon = "favicon.ico"
+  favicon = "img/favicon.png"
 
   # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
   # updatedDatePrefix = "Updated"
@@ -106,6 +106,10 @@ theme = "re-terminal"
         identifier = "hackerspace"
         name = "hackerspace"
         url = "https://sodakhacker.space"
+      [[languages.en.menu.main]]
+        identifier = "github"
+        name = "github"
+        url = "https://github.com/mcculleytech"
 
 [markup]
   [markup.goldmark]

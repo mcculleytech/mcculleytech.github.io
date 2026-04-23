@@ -4,8 +4,12 @@ draft = false
 title = 'about'
 +++
 
+<div style="display:flex; justify-content:center; margin-bottom:2rem;">
+  <img src="/img/trashpanda_logo.png" alt="trashpanda logo — raccoon with fork bomb mask and padlock" style="max-width:400px; width:100%;" />
+</div>
+
 ## overview
-A builder-operator by trade specializing in linux system administration and offensive security. I've been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I've been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!
+A builder-operator by trade specializing in offensive security and linux system administration. I've been studying various technologies since 2018 primarily through my HomeLab and various online Cyber Training platforms like HackTheBox and TryHackMe. I've been working in IT professionally since May of 2021 getting my first job as a Junior Linux System Administrator. After two years in that position I transitioned into a SOC Analyst Role, and in February of 2025 moved into an Offensive Security Engineering position. This blog is I believe the third iteration of its kind. From Hugo to Ghost to Hugo again. Thanks for stopping by and I hope you find something informative here!
 
 ## experience
 - Network Penetration Testing
@@ -51,8 +55,8 @@ A builder-operator by trade specializing in linux system administration and offe
 <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 <div style="display:flex; gap:1rem; align-items:center;">
-  <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/127337054" width="150" alt="accredible certification badge">
-  <img src="https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937" width="150" alt="accredible certification badge">
+  <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/127337054" width="150" alt="TCM Security Practical Junior Penetration Tester (PJPT) certification badge">
+  <img src="https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937" width="150" alt="TCM Security Certified Red Team Operator certification badge">
 </div>
 
 ## trainings

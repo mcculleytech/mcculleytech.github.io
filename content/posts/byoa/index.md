@@ -21,7 +21,7 @@ There's a scene from minority report where Tom Cruise is flying around with a bu
 
 ![minority report](./minority-report.png)
 
-I've been thinking about the implications of AI for attackers and red team operations after reading a post from [embrace the red](https://embracethered.com/blog/posts/2026/agent-commander-your-agent-works-for-me-now/) about an indirect prompt injection based c2 infra. One of the more interesting ideas that I've thought about is that you have an extremely capable operator on endpoints now and once you have shell access, you can bring your own agent into the terminal and use it to continue the attack. A viable route might look like:
+I've been thinking about the implications of AI for attackers and red team operations after reading a post from [embrace the red](https://embracethered.com/blog/posts/2026/agent-commander-your-agent-works-for-me-now/) about an indirect prompt injection based c2 infra. One of the more interesting ideas that I've thought about is with agents you could have an extremely capable operator on endpoints once you have shell access. A viable route might look like:
 
 - install a harness (pi, claude code, etc)
 - link to API key, account, etc.

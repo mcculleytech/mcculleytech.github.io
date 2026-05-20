@@ -1,6 +1,6 @@
 /* Code blocks — solid secondary bg, rounded */
 pre {
-  background: #0a2a42 !important;
+  background: #143A6E !important;
   border: none !important;
   border-radius: 8px;
   padding: 20px 20px 20px 24px !important;
@@ -11,7 +11,7 @@ pre {
 .code-toolbar {
   border: none !important;
   padding: 0 !important;
-  background: #0a2a42;
+  background: #143A6E;
   border-radius: 8px;
 }
 .code-toolbar pre {
@@ -31,7 +31,7 @@ pre[class*="language-"],
 
 /* Inline code — neutral secondary bg instead of accent-tinted */
 code, kbd {
-  background: #0a2a42 !important;
+  background: #143A6E !important;
   color: #e8e8e8 !important;
   border-radius: 5px;
 }

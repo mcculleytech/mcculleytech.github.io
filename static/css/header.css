@@ -17,11 +17,11 @@
 
 /* Layered backgrounds — header/footer chrome */
 .header {
-  background: #021528;
+  background: #061F40;
   padding: 20px 40px;
 }
 .footer {
-  background: #021528;
+  background: #061F40;
   padding: 30px 40px;
 }
 
@@ -71,5 +71,5 @@
 }
 .navigation-menu a:hover,
 .menu a:hover {
-  color: #e63946 !important;
+  color: #C8102E !important;
 }

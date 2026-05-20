@@ -8,13 +8,31 @@
 <link rel="stylesheet" href="/css/tables.css">
 
 <style>
-/* Custom color scheme — dark navy bg, red-team accent */
+/* Tennessee-flag palette — TN navy canvas, TN red accent, Old-Glory blue secondary */
 html:root {
-  --accent: #e63946;
-  --background: #031e32;
+  /* Theme-required hooks (re-terminal expects these) */
+  --accent: #C8102E;
+  --background: #0A2D5C;
   --color: #e8e8e8;
   --menu-color: #e8e8e8;
   --border-color: rgba(255, 255, 255, 0.1);
+
+  /* Brand red — three shades */
+  --tp-accent: #C8102E;
+  --tp-accent-deep: #8E0A1F;
+  --tp-accent-soft: rgba(200, 16, 46, 0.12);
+
+  /* Brand blue — three shades, feature-emphasis */
+  --tp-accent-blue: #2C5AA0;
+  --tp-accent-blue-deep: #1B3D75;
+  --tp-accent-blue-soft: rgba(44, 90, 160, 0.12);
+
+  /* Canvas — TN navy family */
+  --tp-bg: #0A2D5C;
+  --tp-bg-secondary: #143A6E;
+  --tp-bg-header: #061F40;
+  --tp-bg-elevated: #1B4A85;
+  --tp-divider: #2A4675;
 }
 
 #particles {

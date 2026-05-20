@@ -1,6 +1,6 @@
 /* Terminal component */
 .tp-terminal {
-  background: #021528;
+  background: #061F40;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -9,7 +9,7 @@
   font-size: 0.875rem;
 }
 .tp-terminal__bar {
-  background: #0a2a42;
+  background: #143A6E;
   padding: 8px 12px;
   display: flex;
   align-items: center;

@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <header class="micro-list__header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}
+      <p class="micro-list__description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ $entries := where .Site.RegularPages "Section" "micro" }}
+  {{ $entries = $entries.ByDate.Reverse }}
+
+  <div class="micro-list">
+    {{ range $entries }}
+      <article class="micro-entry">
+        <div class="micro-entry__meta">
+          <a href="{{ .RelPermalink }}">
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+              {{ .Date.Format "2006-01-02 15:04" }}
+            </time>
+          </a>
+        </div>
+        {{ with .Title }}
+          <h2 class="micro-entry__title"><a href="{{ $.RelPermalink }}">{{ . | markdownify }}</a></h2>
+        {{ end }}
+        <div class="micro-entry__content">
+          {{ .Content }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+{{ end }}

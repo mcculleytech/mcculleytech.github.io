@@ -4,7 +4,8 @@
       {{ .Content }}
     </div>
   {{ end }}
-  <div class="posts">
+  <div class="home-grid">
+    <div class="posts">
     {{ $isntDefault := not (or (eq (trim $.Site.Params.contentTypeName " ") "posts") (eq (trim $.Site.Params.contentTypeName " ") "")) }}
     {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
 
@@ -64,5 +65,8 @@
     {{ end }}
 
     {{ partial "pagination.html" . }}
+    </div>
+
+    {{ partial "microblog-sidebar.html" . }}
   </div>
 {{ end }}

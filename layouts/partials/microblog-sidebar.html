@@ -1,0 +1,37 @@
+{{ $entries := where .Site.RegularPages "Section" "micro" }}
+{{ $entries = $entries.ByDate.Reverse }}
+{{ $entries = first 8 $entries }}
+
+{{ if $entries }}
+  <aside class="microblog-sidebar">
+    <header class="microblog-sidebar__header">
+      <span class="microblog-sidebar__prompt">~/notes</span>
+    </header>
+    <ul class="microblog-sidebar__list">
+      {{ range $entries }}
+        <li class="microblog-sidebar__item">
+          <time class="microblog-sidebar__time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "01-02 15:04" }}
+          </time>
+          {{ $paras := split .Content "</p>" }}
+          {{ $hasCitation := and (gt (len $paras) 1) (in (index $paras 0) "<a ") }}
+          {{ if $hasCitation }}
+            {{ $citation := printf "%s</p>" (index $paras 0) }}
+            {{ $bodyHtml := delimit (after 1 $paras) "</p>" }}
+            <div class="microblog-sidebar__citation">{{ $citation | safeHTML }}</div>
+            <a href="{{ .RelPermalink }}" class="microblog-sidebar__take">
+              {{ $bodyHtml | plainify | htmlUnescape | truncate 120 }}
+            </a>
+          {{ else }}
+            <a href="{{ .RelPermalink }}" class="microblog-sidebar__take">
+              {{ .Plain | htmlUnescape | truncate 140 }}
+            </a>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+    <footer class="microblog-sidebar__footer">
+      <a href="{{ "/micro/" | relURL }}">all notes →</a>
+    </footer>
+  </aside>
+{{ end }}

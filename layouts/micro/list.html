@@ -13,10 +13,11 @@
     {{ range $entries }}
       <article class="micro-entry">
         <div class="micro-entry__meta">
-          <a href="{{ .RelPermalink }}">
+          <a href="{{ .RelPermalink }}" class="micro-entry__permalink" aria-label="Permalink to this note">
             <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
               {{ .Date.Format "2006-01-02 15:04" }}
             </time>
+            <span class="micro-entry__permalink-icon" aria-hidden="true">#</span>
           </a>
         </div>
         {{ with .Title }}

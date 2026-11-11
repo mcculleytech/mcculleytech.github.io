@@ -15,32 +15,6 @@
   min-width: 0;
 }
 
-@media (max-width: 900px) {
-  .container.center:has(.home-grid) {
-    max-width: 864px;
-  }
-  .home-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .microblog-sidebar {
-    order: -1;
-    position: static;
-  }
-  .microblog-sidebar__list {
-    max-height: 5rem;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-  }
-  .microblog-sidebar__list::-webkit-scrollbar {
-    width: 4px;
-  }
-  .microblog-sidebar__list::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
-  }
-}
 
 /* Sidebar panel — matches the .table-of-contents recipe in post.css */
 .microblog-sidebar {
@@ -270,4 +244,38 @@
 }
 .micro-entry__nav a:hover {
   color: var(--accent) !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile block LAST ON PURPOSE. The base `.microblog-sidebar` rule further up
+   sets `position: sticky`; with this media query sitting before it, the later
+   base rule won the cascade (media queries carry no extra specificity), so the
+   sidebar stayed sticky in one-column layout and covered the posts on scroll.
+   Keep this block at the end of the file.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .container.center:has(.home-grid) {
+    max-width: 864px;
+  }
+  .home-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .microblog-sidebar {
+    order: -1;
+    position: static;
+  }
+  .microblog-sidebar__list {
+    max-height: 5rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  }
+  .microblog-sidebar__list::-webkit-scrollbar {
+    width: 4px;
+  }
+  .microblog-sidebar__list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
 }

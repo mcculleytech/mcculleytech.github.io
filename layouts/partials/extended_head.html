@@ -1,12 +1,16 @@
-<!-- Design system CSS partials -->
-<link rel="stylesheet" href="/css/fonts.css">
-<link rel="stylesheet" href="/css/typography.css">
-<link rel="stylesheet" href="/css/code.css">
-<link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/post.css">
-<link rel="stylesheet" href="/css/terminal.css">
-<link rel="stylesheet" href="/css/tables.css">
-<link rel="stylesheet" href="/css/microblog.css">
+<!-- Design system CSS partials.
+     Served through Hugo Pipes with a content fingerprint in the filename so a
+     stylesheet change produces a NEW URL. Without this the files sat at stable
+     paths like /css/microblog.css behind `cache-control: max-age=600`, and a
+     phone kept rendering the pre-deploy CSS for minutes after a fix shipped —
+     the fix looked absent. Font URLs inside these files are absolute
+     (/fonts/…), so fingerprinting and concatenation cannot break them. -->
+{{ range (slice "fonts" "typography" "code" "header" "post" "terminal" "tables" "microblog") }}
+  {{ with resources.Get (printf "css/%s.css" .) }}
+    {{ $f := . | fingerprint }}
+    <link rel="stylesheet" href="{{ $f.RelPermalink }}" integrity="{{ $f.Data.Integrity }}">
+  {{ end }}
+{{ end }}
 
 <style>
 /* Tennessee-flag palette — TN navy canvas, TN red accent, Old-Glory blue secondary */

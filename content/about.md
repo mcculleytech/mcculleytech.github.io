@@ -59,7 +59,7 @@ A builder-operator by trade specializing in offensive security and linux system 
   <img src="https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937" width="150" alt="Zero-Point Security Certified Red Team Operator (CRTO) certification badge">
 </div>
 
-Hack The Box: [trashpanda99](https://profile.hackthebox.com/profile/019c7784-22c4-72dd-b195-3776098e7371) · Zephyr Pro Lab (Nov 2025)
+Hack The Box: [trashpanda99](https://profile.hackthebox.com/profile/019c7784-22c4-72dd-b195-3776098e7371) · Master rank · Zephyr Pro Lab (Nov 2025)
 
 ## trainings
 - Mandiant Creative Red Team

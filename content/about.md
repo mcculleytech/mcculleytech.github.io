@@ -56,7 +56,7 @@ A builder-operator by trade specializing in offensive security and linux system 
 
 <div style="display:flex; gap:1rem; align-items:center;">
   <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/127337054" width="150" alt="TCM Security Practical Junior Penetration Tester (PJPT) certification badge">
-  <img src="https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937" width="150" alt="TCM Security Certified Red Team Operator certification badge">
+  <img src="https://eu.api.accredible.com/v1/frontend/credential_website_embed_image/badge/15559937" width="150" alt="Zero-Point Security Certified Red Team Operator (CRTO) certification badge">
 </div>
 
 ## trainings

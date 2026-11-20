@@ -1,46 +1,36 @@
-/* 0xProto Nerd Font — brand mono, replaces theme's Fira Code */
+/* JetBrains Mono — brand mono.
+   Replaced 0xProto Nerd Font: its letterforms were hard to read at body size,
+   and the Nerd Font icon glyphs went unused across the site (no private-use
+   characters in any template or stylesheet). These are the plain upstream
+   webfonts — 3 files, 283 KB, against 21 MB of patched TTFs before. */
 @font-face {
-  font-family: "0xProto";
+  font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/0xProtoNerdFont-Regular.ttf") format("truetype");
+  src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2");
 }
 @font-face {
-  font-family: "0xProto";
+  font-family: "JetBrains Mono";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/0xProtoNerdFont-Italic.ttf") format("truetype");
+  src: url("/fonts/JetBrainsMono-Italic.woff2") format("woff2");
 }
 @font-face {
-  font-family: "0xProto";
+  font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/0xProtoNerdFont-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "0xProto Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/0xProtoNerdFontMono-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "0xProto Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/0xProtoNerdFontMono-Bold.ttf") format("truetype");
+  src: url("/fonts/JetBrainsMono-Bold.woff2") format("woff2");
 }
 
-/* Override theme's Fira Code with 0xProto everywhere */
+/* Override the theme's Fira Code with JetBrains Mono everywhere */
 body,
 code, kbd,
 pre, pre code,
 .logo__text,
 .menu a,
 .footer {
-  font-family: "0xProto", "0xProto Mono", ui-monospace, Consolas, Monaco, "Ubuntu Mono", monospace !important;
+  font-family: "JetBrains Mono", ui-monospace, Consolas, Monaco, "Ubuntu Mono", monospace !important;
 }
